@@ -9,8 +9,8 @@ const HeaderMain = () => {
             <Logo/>
             <SearchBar/>
             <div className={""}>
-                <LoginSignButton text={"Login"} textColor={"text-black"} bgColor={"bg-gray-50"} hoverColor={"hover:bg-gray-100"}/>
-                <LoginSignButton text={"Sign Up"} textColor={"text-white"} bgColor={"bg-black"}/>
+                <LoginSignButton text={"Login"} textColor={"text-black"} bgColor={"bg-gray-50"} hoverColor={"hover:bg-gray-200"}/>
+                <LoginSignButton text={"Sign Up"} textColor={"text-white"} bgColor={"bg-caribCurrent"}/>
             </div>
         </div>
     );

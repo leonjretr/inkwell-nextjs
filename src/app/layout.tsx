@@ -1,14 +1,14 @@
 import type {Metadata} from "next";
 import "./globals.css";
 import React from "react";
-import HeaderMain from "@/components/headers/HeaderMain";
+import Wrapper from "@/components/wrappers/Wrapper";
 
 export const metadata: Metadata = {
-    title: "Booksify - reimagine favourite books",
+    title: "Inkwell - reimagine favourite books",
     description: "Reimagine your favourite books",
 };
 
-export default function RootLayout({children,}: Readonly<{
+export default function RootLayout({children}: Readonly<{
     children: React.ReactNode;
 }>) {
     return (
@@ -18,8 +18,9 @@ export default function RootLayout({children,}: Readonly<{
             <link rel="icon" href="/src/app/icon.ico" sizes="any"/>
         </head>
         <body className={"antialiased"}>
-        <HeaderMain/>
-        {children}
+        <Wrapper>
+            {children}
+        </Wrapper>
         </body>
         </html>
     );

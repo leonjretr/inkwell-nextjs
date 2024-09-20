@@ -28,6 +28,11 @@ const config: Config = {
                 greenDark: "#29665B",
                 amateurColor: "#F4BB44",
                 bgDarkColor: "#221F1F",
+                caribCurrent:"#336b75",
+                sage:"#ACAD94",
+                smokyBlack:"#141204",
+                purple:"#5F0F40",
+                thistle:"#DFC2F2",
             },
             spacing: {
                 "88": "22rem",
