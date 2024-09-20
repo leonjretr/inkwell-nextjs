@@ -2,6 +2,8 @@ import type {Metadata} from "next";
 import "./globals.css";
 import React from "react";
 import Wrapper from "@/components/wrappers/Wrapper";
+import HeaderMain from "@/components/headers/HeaderMain";
+import Categories from "@/components/headers/Categories";
 
 export const metadata: Metadata = {
     title: "Inkwell - reimagine favourite books",
@@ -18,9 +20,11 @@ export default function RootLayout({children}: Readonly<{
             <link rel="icon" href="/src/app/icon.ico" sizes="any"/>
         </head>
         <body className={"antialiased"}>
+        <HeaderMain/>
         <Wrapper>
-            {children}
+            <Categories/>
         </Wrapper>
+        {children}
         </body>
         </html>
     );

@@ -8,10 +8,10 @@ const InfoBanner = () => {
         <div
             className="fixed bottom-0 start-0 z-50 flex flex-col justify-between w-full p-4 border-b border-gray-200 md:flex-row bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
             <div className="mb-4 md:mb-0 md:me-4">
-                <h2 className="mb-1 text-base font-semibold text-gray-900 dark:text-white">Integration is the key</h2>
-                <p className="flex items-center text-sm font-normal text-gray-500 dark:text-gray-400">You can integrate
-                    Book with many tools to make your work even more efficient and lightning fast based on Tailwind
-                    CSS.</p>
+                <h2 className="mb-1 text-base font-semibold text-gray-900 dark:text-white">Find out more</h2>
+                <p className="flex items-center text-sm font-normal text-gray-500 dark:text-gray-400">
+                    Thank you for visiting our website! To find out more about how to add your own story or
+                    edit someone else's - click Learn more </p>
             </div>
             <div className="flex items-center flex-shrink-0">
                 <Link href="/about"

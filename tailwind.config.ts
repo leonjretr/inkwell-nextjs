@@ -35,6 +35,7 @@ const config: Config = {
                 thistle:"#DFC2F2",
             },
             spacing: {
+                "0.25": "0.0625rem",
                 "88": "22rem",
                 "110": "28rem",
                 "120": "32rem",

@@ -11,11 +11,9 @@ interface WrapperProps {
 const Wrapper: FC<WrapperProps> = ({children}) => {
     return (
         <>
-            <HeaderMain/>
             <Headroom pinStart={36}>
-                <Categories/>
+                {children}
             </Headroom>
-            {children}
         </>
     );
 };
