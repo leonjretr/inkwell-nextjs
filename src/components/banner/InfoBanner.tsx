@@ -11,7 +11,7 @@ const InfoBanner = () => {
                 <h2 className="mb-1 text-base font-semibold text-gray-900 dark:text-white">Find out more</h2>
                 <p className="flex items-center text-sm font-normal text-gray-500 dark:text-gray-400">
                     Thank you for visiting our website! To find out more about how to add your own story or
-                    edit someone else's - click Learn more </p>
+                    edit someone else - click Learn more </p>
             </div>
             <div className="flex items-center flex-shrink-0">
                 <Link href="/about"
