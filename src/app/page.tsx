@@ -30,6 +30,7 @@ export default function Home() {
 
     return (
         <div className={"flex min-h-screen bg-white pb-24"}>
+            .
             <div className={"flex gap-x-5 mx-10 mt-20"}>
                 {bookCards.map((bookCard) => (
                     <BookCard key={bookCard.id} title={bookCard.title}
