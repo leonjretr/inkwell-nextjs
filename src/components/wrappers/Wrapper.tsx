@@ -1,7 +1,5 @@
 "use client"
 import React, {FC} from 'react';
-import HeaderMain from "@/components/headers/HeaderMain";
-import Categories from "@/components/headers/Categories";
 import Headroom from "react-headroom";
 
 interface WrapperProps {
