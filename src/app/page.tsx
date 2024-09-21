@@ -29,16 +29,17 @@ export default function Home() {
     ]
 
     return (
-        <div className={"flex min-h-screen bg-white pb-24"}>
-            .
-            <div className={"flex gap-x-5 mx-10 mt-20"}>
+        <div className={"flex flex-col min-h-screen bg-white pb-24"}>
+            <div className={"flex justify-center mt-5"}>
+                <InfoBanner/>
+            </div>
+            <div className={"flex gap-x-5 mx-10 mt-5"}>
                 {bookCards.map((bookCard) => (
                     <BookCard key={bookCard.id} title={bookCard.title}
                               author={bookCard.author} uploadDate={bookCard.uploadDate}
                               tags={bookCard.tags}/>
                 ))}
             </div>
-            <InfoBanner/>
         </div>
     );
 }

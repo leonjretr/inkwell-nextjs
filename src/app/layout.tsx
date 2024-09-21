@@ -16,7 +16,7 @@ export default function RootLayout({children}: Readonly<{
     return (
         <html lang="en">
         <head>
-            <title>Classic books sequels</title>
+            <title>Inkwell - reimagine favourite books</title>
             <link rel="icon" href="/src/app/icon.ico" sizes="any"/>
         </head>
         <body className={"antialiased"}>
