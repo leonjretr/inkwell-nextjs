@@ -7,12 +7,12 @@ import Image from "next/image";
 const InfoBanner = () => {
     return (
         <div
-            className="flex gap-x-5 justify-between w-140 rounded-lg p-4 border-b border-gray-200 bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
-            <Image className="rounded-lg" src={"/images/cover.jpg"} alt="MainPageCover" width={300} height={600}/>
+            className="flex gap-x-5 justify-between w-150 rounded-lg p-4 border-b border-gray-200 bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
+            <Image className="rounded-lg max-w-52" src={"/images/cover2.jpg"} alt="MainPageCover" width={300} height={600}/>
             <div className={"flex flex-col"}>
                 <div className="mb-4 md:mb-0 md:me-4">
-                    <h2 className="mb-1 text-base font-semibold text-gray-900 dark:text-white">Find out more</h2>
-                    <p className="flex items-center text-sm font-normal text-gray-500 dark:text-gray-400">
+                    <h2 className="mb-1 text-lg font-semibold text-gray-900 dark:text-white">Find out more</h2>
+                    <p className="flex items-center text-base font-normal text-gray-500 dark:text-gray-400">
                         Thank you for visiting our website! To find out more about how to add your own story or
                         edit someone else - click Learn more.
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -30,11 +30,11 @@ const InfoBanner = () => {
                             Learn more
                         </button>
                     </Link>
-                    <button data-dismiss-target="#informational-banner" type="button"
-                            className="flex-shrink-0 inline-flex justify-center w-7 h-7 items-center text-gray-400 hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 dark:hover:bg-gray-600 dark:hover:text-white">
-                        <IoMdClose/>
-                        <span className="sr-only">Close banner</span>
-                    </button>
+                    {/*<button data-dismiss-target="#informational-banner" type="button"*/}
+                    {/*        className="flex-shrink-0 inline-flex justify-center w-7 h-7 items-center text-gray-400 hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 dark:hover:bg-gray-600 dark:hover:text-white">*/}
+                    {/*    <IoMdClose/>*/}
+                    {/*    <span className="sr-only">Close banner</span>*/}
+                    {/*</button>*/}
                 </div>
             </div>
         </div>

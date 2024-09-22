@@ -7,9 +7,10 @@ interface BookCardProps {
     author: string;
     uploadDate: string;
     tags: string[];
+    rating:number;
 }
 
-const BookCard: FC<BookCardProps> = ({title, author, uploadDate, tags}) => {
+const BookCard: FC<BookCardProps> = ({title, author, uploadDate, tags, rating}) => {
     return (
         <div
             className="max-w-48 flex flex-col text-center bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
@@ -44,6 +45,7 @@ const BookCard: FC<BookCardProps> = ({title, author, uploadDate, tags}) => {
                         <TagBadge key={index} tagTitle={tag}/>
                     ))}
                 </div>
+                <p className={"mb-1 font-bold font-interFont text-sm"}>{rating}</p>
             </div>
         </div>
 

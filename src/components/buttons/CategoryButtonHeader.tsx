@@ -1,13 +1,16 @@
 "use client"
+import Link from 'next/link';
 import React, {FC} from 'react';
 import {MdArrowDropDown} from "react-icons/md";
+import {formatRoute} from "@/utilities/formatRoute";
 
 interface CategoryButtonHeaderProps {
     buttonText: string;
     genres: string[];
+    category: { title: string; genres: string[] };
 }
 
-const CategoryButtonHeader: FC<CategoryButtonHeaderProps> = ({buttonText, genres}) => {
+const CategoryButtonHeader: FC<CategoryButtonHeaderProps> = ({buttonText, genres, category}) => {
     return (
         <div className={"relative group"}>
             <button
@@ -22,8 +25,8 @@ const CategoryButtonHeader: FC<CategoryButtonHeaderProps> = ({buttonText, genres
                 <ul className="py-2 text-sm text-gray-700 dark:text-gray-200 grid grid-rows-4 col-auto">
                     {genres.map((genre, index) => (
                         <li key={index}>
-                            <a href="#"
-                               className="block px-4 py-2 hover:bg-caribCurrent hover:text-white dark:hover:bg-gray-600 dark:hover:text-white">{genre}</a>
+                            <Link href={`/${encodeURIComponent(formatRoute(category.title))}/${encodeURIComponent(formatRoute(genre))}`}
+                                  className="block px-4 py-2 hover:bg-caribCurrent hover:text-white dark:hover:bg-gray-600 dark:hover:text-white">{genre}</Link>
                         </li>
                     ))}
                 </ul>
