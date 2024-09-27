@@ -1,13 +1,15 @@
 import React, {FC} from 'react';
 import Image from "next/image";
 import TagBadge from "@/components/badges/TagBadge";
+import Link from "next/link";
+import {formatRoute} from "@/utilities/formatRoute";
 
 interface BookCardProps {
     title: string;
     author: string;
     uploadDate: string;
     tags: string[];
-    rating:number;
+    rating: number;
 }
 
 const BookCard: FC<BookCardProps> = ({title, author, uploadDate, tags, rating}) => {
@@ -31,13 +33,15 @@ const BookCard: FC<BookCardProps> = ({title, author, uploadDate, tags, rating}) 
                     </button>
                 </a>
                 <a>
-                    <button
-                        className="mb-0.5 relative group font-light p-0.5 font-poppinsFont text-gray-700 dark:text-gray-400">
-                        <h1>{author}</h1>
-                        <span
-                            className={"absolute bottom-0.5 left-0.5 w-0 h-0.25 bg-gray-700 dark:bg-white transition-all group-hover:w-full"}>
+                    <Link href={`/authors/${formatRoute(author)}`}>
+                        <button
+                            className="mb-0.5 relative group font-light p-0.5 font-poppinsFont text-gray-700 dark:text-gray-400">
+                            {author}
+                            <span
+                                className={"absolute bottom-0.5 left-0.5 w-0 h-0.25 bg-gray-700 dark:bg-white transition-all group-hover:w-full"}>
                         </span>
-                    </button>
+                        </button>
+                    </Link>
                 </a>
                 <p className={"mb-3 font-semibold font-interFont text-xs"}>{uploadDate}</p>
                 <div className={"flex flex-wrap items-center gap-x-0.5 gap-y-1"}>

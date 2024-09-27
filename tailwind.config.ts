@@ -32,7 +32,11 @@ const config: Config = {
                 sage:"#ACAD94",
                 smokyBlack:"#141204",
                 purple:"#5F0F40",
-                thistle:"#DFC2F2",
+                thistle:"#C189E6",
+                mountPink:"#95818D",
+                payneGray:"#576066",
+                slateGray:"#2C514C",
+                gunmetalGray:"#122932"
             },
             spacing: {
                 "0.25": "0.0625rem",
