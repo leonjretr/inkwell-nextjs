@@ -16,22 +16,21 @@ const BookCard: FC<BookCardProps> = ({title, author, uploadDate, tags, rating}) 
     return (
         <div
             className="max-w-48 flex flex-col text-center bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-            <a href="#">
+            <Link href={`/authors/${formatRoute(author)}/${formatRoute(title)}`}>
                 <Image className="mx-auto rounded-t-lg" src="/images/cover.jpg" alt="BookCover"
                        width={200}
                        height={300}/>
-            </a>
+            </Link>
             <div className="p-2">
-                <a>
+                <Link href={`/authors/${formatRoute(author)}/${formatRoute(title)}`}>
                     <button
-                        className="relative group text-smokyBlack font-poppinsFont font-medium rounded-lg p-0.5 text-center inline-flex items-center"
+                        className="relative group text-base font-bold tracking-tight text-gray-900 font-poppinsFont rounded-lg p-0.5 text-center inline-flex items-center"
                     >
-                        <h5 className="text-base font-bold tracking-tight text-gray-900 dark:text-white">
-                            {title}</h5>
+                        {title}
                         <span
                             className={"absolute bottom-0.5 left-0.5 w-0 h-0.5 bg-black dark:bg-white transition-all group-hover:w-full"}></span>
                     </button>
-                </a>
+                </Link>
                 <a>
                     <Link href={`/authors/${formatRoute(author)}`}>
                         <button
