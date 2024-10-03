@@ -3,16 +3,18 @@ import React, {FC} from 'react';
 
 interface LoginSignButtonProps {
     text: string;
-    textColor:string;
+    textColor: string;
     bgColor: string;
     hoverColor?: string;
+    openModal: () => void;
 }
 
-const LoginSignButton: FC<LoginSignButtonProps> = ({text, bgColor, hoverColor, textColor}) => {
+const LoginSignButton: FC<LoginSignButtonProps> = ({text, bgColor, hoverColor, textColor, openModal}) => {
     return (
         <motion.button
-            whileHover={{scale:1.1}}
-            whileTap={{scale:0.95}}
+            onClick={openModal}
+            whileHover={{scale: 1.1}}
+            whileTap={{scale: 0.95}}
             className={`m-1 h-10 w-20 rounded-lg text-sm font-interFont ${textColor} ${bgColor} ${hoverColor} `}>
             {text}
         </motion.button>
