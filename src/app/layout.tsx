@@ -7,7 +7,7 @@ import Categories from "@/components/headers/Categories";
 import Footer from "@/components/footers/Footer";
 
 export const metadata: Metadata = {
-    title: "Inkwell - reimagine favourite books",
+    title: "Inktells - reimagine favourite books",
     description: "Reimagine your favourite books",
 };
 
@@ -17,7 +17,7 @@ export default function RootLayout({children}: Readonly<{
     return (
         <html lang="en">
         <head>
-            <title>Inkwell - reimagine favourite books</title>
+            <title>Inktells - reimagine favourite books</title>
             <link rel="icon" href="/src/app/icon.ico" sizes="any"/>
         </head>
         <body className={"antialiased"}>

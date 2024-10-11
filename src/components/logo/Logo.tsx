@@ -6,7 +6,7 @@ const Logo = () => {
         <Link href={"/"}
         className={"cursor-pointer select-none"}>
             <p className={"font-interFont text-xl font-extrabold"}>
-                INKWELL
+                INKTELLS
             </p>
             <p className={"font-poppinsFont text-xs font-light"}>
                 reimagine favourite books

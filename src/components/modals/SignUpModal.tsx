@@ -1,10 +1,10 @@
 import React, {FC} from 'react';
 
-interface LoginModalProps {
+interface SignUpModalProps {
     closeModal: () => void;
 }
 
-const LoginModal: FC<LoginModalProps> = ({closeModal}) => {
+const SignUpModal: FC<SignUpModalProps> = ({closeModal}) => {
     return (
         <>
             {/*Header*/}
@@ -73,4 +73,4 @@ const LoginModal: FC<LoginModalProps> = ({closeModal}) => {
     );
 };
 
-export default LoginModal;
+export default SignUpModal;
