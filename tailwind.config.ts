@@ -53,7 +53,8 @@ const config: Config = {
                 'mob3': '540px'
             },
             fontSize: {
-                xxs: "0.5rem"
+                xxs: "0.5rem",
+                xss: "0.625rem",
             }
         },
     },

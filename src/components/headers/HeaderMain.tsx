@@ -1,5 +1,5 @@
 "use client"
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import Logo from "@/components/logo/Logo";
 import SearchBar from "@/components/search-bar/SearchBar";
 import LoginSignButton from "@/components/buttons/LoginSignButton";
@@ -17,9 +17,6 @@ const HeaderMain = () => {
     const setRegisterModalOpened = useModalStore((state) => state.openRegisterModal);
     const setRegisterModalClosed = useModalStore((state) => state.closeRegisterModal);
 
-    const [loginEmail, setLoginEmail] = useState("");
-    const [loginPassword, setLoginPassword] = useState("");
-
     useEffect(() => {
         if (loginModalOpened || registerModalOpened) {
             document.body.style.overflow = 'hidden';
@@ -30,13 +27,6 @@ const HeaderMain = () => {
         }
     }, [registerModalOpened, loginModalOpened]);
 
-    const handleEmailChange = (e:React.ChangeEvent<HTMLFormElement>) => {
-        setLoginEmail(e.target.value);
-    }
-    const handlePasswordChange = (e:React.ChangeEvent<HTMLFormElement>) => {
-        setLoginPassword(e.target.value);
-    }
-
     return (
         <div className={"bg-headerColor w-full h-20 flex justify-between items-center px-3 border-b border-gray-300"}>
             <Logo/>
@@ -45,13 +35,14 @@ const HeaderMain = () => {
                 <LoginSignButton openModal={setLoginModalOpened}/>
                 <SignUpButton openModal={setRegisterModalOpened}/>
             </div>
-
-            <Modal showModal={loginModalOpened} closeModal={setLoginModalClosed}>
-                <LoginModal closeModal={setLoginModalClosed}/>
-            </Modal>
-            <Modal showModal={registerModalOpened} closeModal={setRegisterModalClosed}>
-                <SignUpModal closeModal={setRegisterModalClosed}/>
-            </Modal>
+            <>
+                <Modal showModal={loginModalOpened} closeModal={setLoginModalClosed}>
+                    <LoginModal closeModal={setLoginModalClosed}/>
+                </Modal>
+                <Modal showModal={registerModalOpened} closeModal={setRegisterModalClosed}>
+                    <SignUpModal closeModal={setRegisterModalClosed}/>
+                </Modal>
+            </>
         </div>
     );
 };

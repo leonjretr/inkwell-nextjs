@@ -11,7 +11,7 @@ const LoginModal: FC<LoginModalProps> = ({closeModal}) => {
             <div
                 className="flex items-center justify-between py-2 border-b rounded-t dark:border-gray-600">
                 <h3 className="text-xl font-semibold font-interFont text-gray-900 dark:text-white">
-                    Sign in to Inkwell
+                    Sign in to Inktells
                 </h3>
                 <button
                     className="end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
@@ -56,15 +56,15 @@ const LoginModal: FC<LoginModalProps> = ({closeModal}) => {
                                    className="ms-2 text-sm text-gray-900 dark:text-gray-300">
                                 Remember me</label>
                         </div>
-                        <a href="#" className="text-sm text-blue-700 hover:underline dark:text-blue-500">
-                            Lost Password?</a>
+                        <h1 className="text-sm text-blue-700 hover:underline dark:text-blue-500">
+                            Lost Password?</h1>
                     </div>
                     <button type="submit"
                             className="w-full text-white bg-caribCurrent font-interFont hover:bg-gray-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
                         Login to your account
                     </button>
                     <div className="text-sm font-interFont text-gray-500 dark:text-gray-300">
-                        Not registered? <a href="#" className="text-blue-700 hover:underline dark:text-blue-500">
+                        Not registered? <a className="text-blue-700 hover:underline dark:text-blue-500">
                         Create account</a>
                     </div>
                 </form>
