@@ -1,10 +1,10 @@
 import {IRegisterName, IRegisterStock} from "@/types/Registration";
 import registerStore from "@/stores/registerStore";
-import {register} from "next/dist/client/components/react-dev-overlay/pages/client";
 
 export const postRegister = async (
     data: IRegisterStock & IRegisterName,
     setCookie: (name: "jwt", value: string, options?: object) => void,
+    closeModal: () => void,
 ) => {
     const res = await fetch("http://localhost:1337/api/auth/local/register", {
         method: 'POST',
@@ -44,8 +44,10 @@ export const postRegister = async (
         const updateData = await updateRes.json();
         if (updateRes.ok) {
             console.log("User name updated successfully", updateData);
+            closeModal();
         } else {
             console.error("Failed to update user name", updateData);
+            closeModal();
         }
     } else {
         registerStore.setUsernameTakenTrue();

@@ -1,4 +1,4 @@
-import React, {FC, useEffect, useState} from 'react';
+import React, {FC, useState} from 'react';
 import {postRegister} from "@/components/queries/postRegister";
 import {validEmail, validPassword} from "@/regex/loginRegex";
 import {useCookies} from "react-cookie";
@@ -39,11 +39,11 @@ const SignUpModal: FC<SignUpModalProps> = observer(({closeModal}) => {
                         name: registerName,
                         email: registerEmail,
                         password: registerPassword
-                    }, setCookie)
+                    }, setCookie, closeModal)
                         .catch((error) => {
                             console.error("Error during registration:", error);
                         })
-                } catch (error: any) {
+                } catch (error) {
                     console.error("Error during registration:", error);
                 }
             } else {
