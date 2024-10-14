@@ -4,6 +4,7 @@ class registerStore {
 
     isUsernameTaken: boolean = false;
     fetchError: string = "";
+    registrationSuccessful: boolean = false;
 
     constructor() {
         makeAutoObservable(this);
@@ -20,6 +21,12 @@ class registerStore {
         this.fetchError = error;
     }
 
+    setRegistrationSuccessfulTrue = () => {
+        this.registrationSuccessful = true;
+    }
+    setRegistrationSuccessfulFalse = () => {
+        this.registrationSuccessful = false;
+    }
 }
 
 export default new registerStore();

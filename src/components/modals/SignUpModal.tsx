@@ -1,7 +1,6 @@
 import React, {FC, useState} from 'react';
-import {postRegister} from "@/components/queries/postRegister";
+import {postRegister} from "@/queries/postRegister";
 import {validEmail, validPassword} from "@/regex/loginRegex";
-import {useCookies} from "react-cookie";
 import {observer} from "mobx-react-lite";
 import registerStore from "@/stores/registerStore";
 
@@ -20,8 +19,6 @@ const SignUpModal: FC<SignUpModalProps> = observer(({closeModal}) => {
     const [passWeak, setPassWeak] = useState(false);
     const [passNotMatch, setPassNotMatch] = useState(false);
 
-    const [cookies, setCookie] = useCookies(['jwt']);
-
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.stopPropagation();
         event.preventDefault();
@@ -39,10 +36,7 @@ const SignUpModal: FC<SignUpModalProps> = observer(({closeModal}) => {
                         name: registerName,
                         email: registerEmail,
                         password: registerPassword
-                    }, setCookie, closeModal)
-                        .catch((error) => {
-                            console.error("Error during registration:", error);
-                        })
+                    }, closeModal).then();
                 } catch (error) {
                     console.error("Error during registration:", error);
                 }
@@ -161,7 +155,7 @@ const SignUpModal: FC<SignUpModalProps> = observer(({closeModal}) => {
                     </div>
                     <button type="submit"
                             className="w-full text-white bg-caribCurrent font-interFont hover:bg-gray-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
-                        Create account
+                        {registerStore.registrationSuccessful ? <h1>Your registration was successful!</h1> : <h1>Create account</h1>}
                     </button>
                     <div className="text-sm font-interFont text-gray-500 dark:text-gray-300">
                         Registered? <a className="text-blue-700 hover:underline dark:text-blue-500">

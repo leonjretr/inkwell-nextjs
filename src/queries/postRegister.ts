@@ -3,10 +3,9 @@ import registerStore from "@/stores/registerStore";
 
 export const postRegister = async (
     data: IRegisterStock & IRegisterName,
-    setCookie: (name: "jwt", value: string, options?: object) => void,
     closeModal: () => void,
 ) => {
-    const res = await fetch("http://localhost:1337/api/auth/local/register", {
+    const res = await fetch("/api/auth/register", {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -18,39 +17,41 @@ export const postRegister = async (
         }),
     });
     const responseData = await res.json();
-
+    console.log(responseData.user.user.id);
+    const userId = responseData.user.user.id;
     // Handle response (saving JWT token)
-    if (res.ok && responseData.jwt) {
-        // Store JWT in a cookie
-        setCookie('jwt', responseData.jwt, {
-            secure: true,
-            sameSite: 'strict',
-            path: '/', // Make cookie accessible across your app
-            expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000) // Expires in 7 days
-        })
+    if (res.ok) {
         // After registration, make an additional request to update the user's name
-        const userId = responseData.user.id; // Get the registered user ID
-        const updateRes = await fetch(`http://localhost:1337/api/users/${userId}`, {
+        const updateRes = await fetch(`/api/auth/update`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${responseData.jwt}`, // Send the JWT token
             },
             body: JSON.stringify({
-                name: data.name, // Update the name field
+                name: data.name,
+                userId: userId,// Update the name field
             }),
         });
 
         const updateData = await updateRes.json();
         if (updateRes.ok) {
             console.log("User name updated successfully", updateData);
-            closeModal();
+            registerStore.setRegistrationSuccessfulTrue();
+            setTimeout(() => {
+                closeModal();
+                registerStore.setRegistrationSuccessfulFalse();
+            }, 3000);
         } else {
             console.error("Failed to update user name", updateData);
-            closeModal();
+            // registerStore.setRegistrationSuccessfulTrue();
+            // setTimeout(() => {
+            //     closeModal();
+            //     registerStore.setRegistrationSuccessfulFalse();
+            // }, 3000);
         }
     } else {
         registerStore.setUsernameTakenTrue();
+        console.log("error is here")
         registerStore.setFetchError(responseData.error.message);
         console.error("Registration failed", responseData.error.message);
     }
