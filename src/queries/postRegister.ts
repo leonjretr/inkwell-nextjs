@@ -1,4 +1,4 @@
-import {IRegisterName, IRegisterStock} from "@/types/Registration";
+import {IRegisterName, IRegisterStock} from "@/types/IRegistration";
 import registerStore from "@/stores/registerStore";
 
 export const postRegister = async (
@@ -17,7 +17,6 @@ export const postRegister = async (
         }),
     });
     const responseData = await res.json();
-    console.log(responseData.user.user.id);
     const userId = responseData.user.user.id;
     // Handle response (saving JWT token)
     if (res.ok) {

@@ -1,10 +1,31 @@
-import React, {FC} from 'react';
+import React, {FC, useState} from 'react';
+import {postLogin} from "@/queries/postLogin";
+import {validEmail, validPassword} from "@/regex/loginRegex";
 
 interface LoginModalProps {
     closeModal: () => void;
 }
 
 const LoginModal: FC<LoginModalProps> = ({closeModal}) => {
+
+    const [loginEmail, setLoginEmail] = useState("");
+    const [loginPassword, setLoginPassword] = useState("");
+
+    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+        event.stopPropagation();
+        event.preventDefault();
+        if (validEmail.test(loginEmail) && validPassword.test(loginPassword)) {
+            try {
+                postLogin({
+                    email: loginEmail,
+                    password: loginPassword,
+                }, closeModal).then();
+            } catch (error) {
+                console.error("Error during login:", error);
+            }
+        }
+    }
+
     return (
         <>
             {/*Header*/}
@@ -25,23 +46,26 @@ const LoginModal: FC<LoginModalProps> = ({closeModal}) => {
 
             {/*Body*/}
             <div className="py-2">
-                <form className="space-y-4" action="#">
+                <form className="space-y-4" action="#"
+                      onSubmit={handleSubmit}>
                     <div>
                         <label htmlFor="email"
                                className="block mb-2 text-left text-sm font-medium font-interFont text-gray-900 dark:text-white">
                             Your email
                         </label>
-                        <input
-                            type="email" name="email" id="email"
-                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                            placeholder="johndoe@gmail.com" required/>
+                        <input value={loginEmail} id="email"
+                               onChange={(e: React.ChangeEvent<HTMLInputElement>) => setLoginEmail(e.target.value)}
+                               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                               placeholder="johndoe@gmail.com" required/>
                     </div>
                     <div>
                         <label htmlFor="password"
                                className="block mb-2 text-left text-sm font-medium font-interFont text-gray-900 dark:text-white">
                             Your password
                         </label>
-                        <input type="password" name="password" id="password" placeholder="••••••••"
+                        <input value={loginPassword} id="password"
+                               onChange={(e: React.ChangeEvent<HTMLInputElement>) => setLoginPassword(e.target.value)}
+                               placeholder="••••••••"
                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                                required/>
                     </div>
@@ -50,7 +74,7 @@ const LoginModal: FC<LoginModalProps> = ({closeModal}) => {
                             <div className="flex items-center h-5">
                                 <input id="remember" type="checkbox" value=""
                                        className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-600 dark:border-gray-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800"
-                                       required/>
+                                       />
                             </div>
                             <label htmlFor="remember"
                                    className="ms-2 text-sm text-gray-900 dark:text-gray-300">

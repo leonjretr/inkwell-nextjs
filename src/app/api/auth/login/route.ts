@@ -1,19 +1,18 @@
-// app/api/auth/login/route.ts
 import { NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
 
 export async function POST(req: Request) {
-    const { email, password } = await req.json();
+    const { identifier, password } = await req.json();
 
     // Send login request to Strapi's API
-    const loginRes = await fetch(`${process.env.STRAPI_API}/auth/local`, {
+    const loginRes = await fetch(`${process.env.STRAPI_API}/api/auth/local`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-            email,
-            password,
+            identifier: identifier,
+            password: password,
         }),
     });
 
@@ -29,7 +28,6 @@ export async function POST(req: Request) {
             maxAge: 60 * 60 * 24 * 7, // Set cookie for 1 week
             sameSite: 'strict',       // Prevent CSRF attacks
         });
-
         // Send success response
         return NextResponse.json({ message: 'Login successful' });
     } else {

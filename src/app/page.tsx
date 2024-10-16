@@ -3,6 +3,7 @@ import InfoBanner from "@/components/banner/InfoBanner";
 import BookCard from "@/components/cards/BookCard";
 import {bookCards} from "@/config/bookCardData";
 
+
 export default function Home() {
     return (
         <div className={"flex flex-col min-h-screen bg-white pb-10"}>

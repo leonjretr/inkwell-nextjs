@@ -5,6 +5,8 @@ class registerStore {
     isUsernameTaken: boolean = false;
     fetchError: string = "";
     registrationSuccessful: boolean = false;
+    loginSuccessful: boolean = false;
+    isAuthorized: boolean = false;
 
     constructor() {
         makeAutoObservable(this);
@@ -26,6 +28,20 @@ class registerStore {
     }
     setRegistrationSuccessfulFalse = () => {
         this.registrationSuccessful = false;
+    }
+
+    setLoginSuccessfulTrue = () => {
+        this.loginSuccessful = true;
+    }
+    setLoginSuccessfulFalse = () => {
+        this.loginSuccessful = false;
+    }
+
+    setAuthorizedTrue = () => {
+        this.isAuthorized = true;
+    }
+    setAuthorizedFalse = () => {
+        this.isAuthorized = false;
     }
 }
 
