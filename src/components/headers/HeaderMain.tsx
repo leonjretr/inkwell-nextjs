@@ -12,6 +12,10 @@ import HeaderProfile from "@/components/profile/HeaderProfile";
 import {checkAuth} from "@/queries/checkAuth";
 import registerStore from "@/stores/registerStore";
 
+interface Response {
+    message: string | undefined;
+}
+
 const HeaderMain = () => {
     const loginModalOpened = useModalStore((state) => state.isLoginModalOpened);
     const registerModalOpened = useModalStore((state) => state.isRegisterModalOpened);
@@ -20,17 +24,23 @@ const HeaderMain = () => {
     const setRegisterModalOpened = useModalStore((state) => state.openRegisterModal);
     const setRegisterModalClosed = useModalStore((state) => state.closeRegisterModal);
 
+    const [isAuth, setIsAuth] = React.useState<Response>({message: undefined});
     const auth = registerStore;
     useEffect(() => {
-        checkAuth()
-            .catch((error) => {
-                console.error(error + "The error happened while trying to authorize user.")
-            })
-            .then();
+        const checkAuthentication = async () => {
+            const resData = await checkAuth()
+                .catch((error) => {
+                    console.error(error + "The error happened while trying to authorize user.")
+                })
+                .then();
+            setIsAuth(resData)
+            console.log(resData);
+        }
         console.log(auth.isAuthorized);
+        checkAuthentication();
     }, [auth.isAuthorized]);
 
-    console.log("что с юзером?" + auth.isAuthorized);
+
     useEffect(() => {
         if (loginModalOpened || registerModalOpened) {
             document.body.style.overflow = 'hidden';
@@ -47,7 +57,7 @@ const HeaderMain = () => {
             className={"bg-headerColor w-full h-20 flex justify-between items-center px-3 border-b border-gray-300"}>
             <Logo/>
             <SearchBar/>
-            {auth.isAuthorized ? <HeaderProfile/> : <div>
+            {isAuth.message == "Authorized" ? <HeaderProfile/> : <div>
                 <LoginSignButton openModal={setLoginModalOpened}/>
                 <SignUpButton openModal={setRegisterModalOpened}/>
             </div>}

@@ -21,12 +21,14 @@ export const postLogin = async (
     if (res.ok) {
         console.log("You have been successfully logged in!");
         registerStore.setLoginSuccessfulTrue();
+        registerStore.setAuthorizedTrue();
         setTimeout(() => {
             closeModal();
         }, 3000);
     } else {
         console.error("Failed to update user name", responseData);
         registerStore.setLoginSuccessfulFalse();
+        registerStore.setAuthorizedFalse();
         // registerStore.setRegistrationSuccessfulTrue();
         // setTimeout(() => {
         //     closeModal();

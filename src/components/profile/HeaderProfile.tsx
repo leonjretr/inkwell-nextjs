@@ -1,15 +1,12 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {FaUser} from "react-icons/fa";
 import {IoIosArrowDown} from "react-icons/io";
+import registerStore from "@/stores/registerStore";
 // import NavDrawer from "@/components/drawer/NavDrawer";
 // import {MdArrowDropDown} from "react-icons/md";
 
 const HeaderProfile = () => {
     const [drawerOpen, setDrawerOpen] = React.useState(false);
-
-    useEffect(() => {
-        console.log(drawerOpen);
-    }, [drawerOpen]);
 
     const handleLogout = async (event: React.MouseEvent<HTMLButtonElement>) => {
         event.stopPropagation();
@@ -18,8 +15,11 @@ const HeaderProfile = () => {
             method: "POST",
             headers: {'Content-Type': 'application/json'},
         })
-        if(res.ok){
+        if (res.ok) {
+            registerStore.setAuthorizedTrue();
             console.log("Logout successful")
+        } else {
+            registerStore.setAuthorizedFalse();
         }
     }
 
