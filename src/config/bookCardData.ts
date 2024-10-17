@@ -1,0 +1,42 @@
+export const bookCards = [
+    {
+        id: 1,
+        title: "Poems. 1828-1831",
+        author: "Mihail Lermontov",
+        uploadDate: "September 20 2024",
+        tags: ["Poems", "Russian", "XIX", "Classic", "Horror", "Adventure", "Caucasus", "Horror", "Adventure", "Caucasus"],
+        rating: 1,
+    },
+    {
+        id: 2,
+        title: "Zapiski oxotnika",
+        author: "Ivan Turgenev",
+        uploadDate: "September 21 2024",
+        tags: ["Poems", "Russian", "XIX", "Classic"],
+        rating: 2,
+    },
+    {
+        id: 3,
+        title: "Poems. 1828-1831",
+        author: "Mihail Lermontov",
+        uploadDate: "September 22 2024",
+        tags: ["Proza", "Russian", "XIX", "Classic"],
+        rating: 3,
+    },
+    {
+        id: 4,
+        title: "Poems. 1828-1831",
+        author: "Mihail Lermontov",
+        uploadDate: "September 22 2024",
+        tags: ["Proza", "Russian", "XIX", "Classic"],
+        rating: 4,
+    },
+    {
+        id: 5,
+        title: "Poems. 1828-1831",
+        author: "Mihail Lermontov",
+        uploadDate: "September 22 2024",
+        tags: ["Proza", "Russian", "XIX", "Classic"],
+        rating: 5,
+    },
+]

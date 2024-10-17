@@ -1,16 +1,17 @@
 import React from 'react';
+import Link from "next/link";
 
 const Logo = () => {
     return (
-        <div
+        <Link href={"/"}
         className={"cursor-pointer select-none"}>
             <p className={"font-interFont text-xl font-extrabold"}>
-                INKWELL
+                INKTELLS
             </p>
             <p className={"font-poppinsFont text-xs font-light"}>
                 reimagine favourite books
             </p>
-        </div>
+        </Link>
     );
 };
 

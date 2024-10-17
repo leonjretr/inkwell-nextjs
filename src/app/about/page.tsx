@@ -3,7 +3,7 @@ import Link from "next/link";
 
 const Page = () => {
     return (
-        <div className={"flex flex-col justify-center m-5"}>
+        <div className={"flex flex-col items-center m-5 min-h-screen bg-white pb-10"}>
             <div className={"text-base text-black font-semibold"}>
                 Hello! My name is Leonid and this is my first Next project
             </div>

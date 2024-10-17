@@ -32,7 +32,11 @@ const config: Config = {
                 sage:"#ACAD94",
                 smokyBlack:"#141204",
                 purple:"#5F0F40",
-                thistle:"#DFC2F2",
+                thistle:"#C189E6",
+                mountPink:"#95818D",
+                payneGray:"#576066",
+                slateGray:"#2C514C",
+                gunmetalGray:"#122932"
             },
             spacing: {
                 "0.25": "0.0625rem",
@@ -49,7 +53,8 @@ const config: Config = {
                 'mob3': '540px'
             },
             fontSize: {
-                xxs: "0.5rem"
+                xxs: "0.5rem",
+                xss: "0.625rem",
             }
         },
     },

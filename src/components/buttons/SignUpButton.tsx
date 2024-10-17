@@ -11,8 +11,8 @@ const LoginSignButton: FC<LoginSignButtonProps> = ({openModal}) => {
             onClick={openModal}
             whileHover={{scale: 1.1}}
             whileTap={{scale: 0.95}}
-            className={`m-1 h-10 w-20 rounded-lg text-sm font-interFont bg-gray-50 text-black hover:bg-gray-200`}>
-            Login
+            className={`m-1 h-10 w-20 rounded-lg text-sm font-interFont text-white bg-caribCurrent`}>
+            Sign up
         </motion.button>
     );
 };
