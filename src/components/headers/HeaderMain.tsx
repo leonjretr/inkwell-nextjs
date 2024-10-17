@@ -11,6 +11,7 @@ import {useModalStore} from "@/stores/useModalStore";
 import HeaderProfile from "@/components/profile/HeaderProfile";
 import {checkAuth} from "@/queries/checkAuth";
 import registerStore from "@/stores/registerStore";
+import {observer} from "mobx-react-lite";
 
 interface Response {
     message: string | undefined;
@@ -25,7 +26,6 @@ const HeaderMain = () => {
     const setRegisterModalClosed = useModalStore((state) => state.closeRegisterModal);
 
     const [isAuth, setIsAuth] = React.useState<Response>({message: undefined});
-    const auth = registerStore;
     useEffect(() => {
         const checkAuthentication = async () => {
             const resData = await checkAuth()
@@ -34,11 +34,9 @@ const HeaderMain = () => {
                 })
                 .then();
             setIsAuth(resData)
-            console.log(resData);
         }
-        console.log(auth.isAuthorized);
         checkAuthentication();
-    }, [auth.isAuthorized]);
+    }, [registerStore.isAuthorized]);
 
 
     useEffect(() => {
@@ -73,4 +71,4 @@ const HeaderMain = () => {
     );
 };
 
-export default HeaderMain;
+export default observer(HeaderMain);

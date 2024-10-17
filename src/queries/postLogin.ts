@@ -26,7 +26,7 @@ export const postLogin = async (
             closeModal();
         }, 3000);
     } else {
-        console.error("Failed to update user name", responseData);
+        console.log("Failed to update user name", responseData);
         registerStore.setLoginSuccessfulFalse();
         registerStore.setAuthorizedFalse();
         // registerStore.setRegistrationSuccessfulTrue();

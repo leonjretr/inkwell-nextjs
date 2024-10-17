@@ -1,6 +1,7 @@
 import React, {FC, useState} from 'react';
 import {postLogin} from "@/queries/postLogin";
 import {validEmail, validPassword} from "@/regex/loginRegex";
+import {useModalStore} from "@/stores/useModalStore";
 
 interface LoginModalProps {
     closeModal: () => void;
@@ -10,6 +11,8 @@ const LoginModal: FC<LoginModalProps> = ({closeModal}) => {
 
     const [loginEmail, setLoginEmail] = useState("");
     const [loginPassword, setLoginPassword] = useState("");
+
+    const setRegisterModalOpened = useModalStore((state) => state.openRegisterModal);
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.stopPropagation();
@@ -24,6 +27,10 @@ const LoginModal: FC<LoginModalProps> = ({closeModal}) => {
                 console.error("Error during login:", error);
             }
         }
+    }
+    const handleSignUpButton = () => {
+        closeModal();
+        setRegisterModalOpened();
     }
 
     return (
@@ -74,7 +81,7 @@ const LoginModal: FC<LoginModalProps> = ({closeModal}) => {
                             <div className="flex items-center h-5">
                                 <input id="remember" type="checkbox" value=""
                                        className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-600 dark:border-gray-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800"
-                                       />
+                                />
                             </div>
                             <label htmlFor="remember"
                                    className="ms-2 text-sm text-gray-900 dark:text-gray-300">
@@ -88,8 +95,10 @@ const LoginModal: FC<LoginModalProps> = ({closeModal}) => {
                         Login to your account
                     </button>
                     <div className="text-sm font-interFont text-gray-500 dark:text-gray-300">
-                        Not registered? <a className="text-blue-700 hover:underline dark:text-blue-500">
-                        Create account</a>
+                        Not registered? <button
+                        onClick={handleSignUpButton}
+                        className="text-blue-700 hover:underline dark:text-blue-500">
+                        Create account</button>
                     </div>
                 </form>
             </div>

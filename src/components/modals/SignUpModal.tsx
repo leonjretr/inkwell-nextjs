@@ -3,6 +3,7 @@ import {postRegister} from "@/queries/postRegister";
 import {validEmail, validPassword} from "@/regex/loginRegex";
 import {observer} from "mobx-react-lite";
 import registerStore from "@/stores/registerStore";
+import {useModalStore} from "@/stores/useModalStore";
 
 interface SignUpModalProps {
     closeModal: () => void;
@@ -14,6 +15,8 @@ const SignUpModal: FC<SignUpModalProps> = observer(({closeModal}) => {
     const [registerEmail, setRegisterEmail] = useState("");
     const [registerPassword, setRegisterPassword] = useState("");
     const [repeatedPassword, setRepeatedPassword] = useState("");
+
+    const setLoginModalOpened = useModalStore((state) => state.openLoginModal);
 
     const [emailErr, setEmailErr] = useState(false);
     const [passWeak, setPassWeak] = useState(false);
@@ -51,6 +54,11 @@ const SignUpModal: FC<SignUpModalProps> = observer(({closeModal}) => {
         } else if (!validPassword.test(registerPassword)) {
             setPassWeak(true);
         }
+    }
+
+    const handleLoginButton = () => {
+        closeModal();
+        setLoginModalOpened();
     }
 
     return (
@@ -100,7 +108,8 @@ const SignUpModal: FC<SignUpModalProps> = observer(({closeModal}) => {
                                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                                 placeholder="Doe" required/>
                             {registerStore.isUsernameTaken && (
-                                <div className={"mt-1 ml-0.5 text-xss text-left font-light text-red-600 font-interFont"}>
+                                <div
+                                    className={"mt-1 ml-0.5 text-xss text-left font-light text-red-600 font-interFont"}>
                                     {registerStore.fetchError}
                                 </div>)}
                         </div>
@@ -116,9 +125,10 @@ const SignUpModal: FC<SignUpModalProps> = observer(({closeModal}) => {
                             id="email"
                             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                             placeholder="johndoe@gmail.com" required/>
-                        {emailErr && <div className={"mt-1 ml-0.5 text-xss text-left font-light text-red-600 font-interFont"}>
-                            Enter correct email address.
-                        </div>}
+                        {emailErr &&
+                            <div className={"mt-1 ml-0.5 text-xss text-left font-light text-red-600 font-interFont"}>
+                                Enter correct email address.
+                            </div>}
                         {registerStore.isUsernameTaken && (
                             <div className={"mt-1 text-xss ml-0.5 text-left font-light text-red-600 font-interFont"}>
                                 {registerStore.fetchError}
@@ -135,7 +145,8 @@ const SignUpModal: FC<SignUpModalProps> = observer(({closeModal}) => {
                                    id="password" placeholder="••••••••"
                                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                                    required/>
-                            {passWeak && <div className={"mt-1 ml-0.5 text-xss text-left font-light text-red-600 font-interFont"}>
+                            {passWeak && <div
+                                className={"mt-1 ml-0.5 text-xss text-left font-light text-red-600 font-interFont"}>
                                 Your password is not secure enough.
                             </div>}
                         </div>
@@ -148,18 +159,21 @@ const SignUpModal: FC<SignUpModalProps> = observer(({closeModal}) => {
                                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => setRepeatedPassword(e.target.value)}
                                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                             />
-                            {passNotMatch && <div className={"mt-1 ml-0.5 text-left text-xss font-light text-red-600 font-interFont"}>
+                            {passNotMatch && <div
+                                className={"mt-1 ml-0.5 text-left text-xss font-light text-red-600 font-interFont"}>
                                 Passwords do not match. Try again.
                             </div>}
                         </div>
                     </div>
                     <button type="submit"
                             className="w-full text-white bg-caribCurrent font-interFont hover:bg-gray-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
-                        {registerStore.registrationSuccessful ? <h1>Your registration was successful!</h1> : <h1>Create account</h1>}
+                        {registerStore.registrationSuccessful ? <h1>Your registration was successful!</h1> :
+                            <h1>Create account</h1>}
                     </button>
                     <div className="text-sm font-interFont text-gray-500 dark:text-gray-300">
-                        Registered? <a className="text-blue-700 hover:underline dark:text-blue-500">
-                        Sign in</a>
+                        Registered? <button onClick={handleLoginButton}
+                                            className="text-blue-700 hover:underline dark:text-blue-500">
+                        Sign in</button>
                     </div>
                 </form>
             </div>

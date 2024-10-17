@@ -12,7 +12,7 @@ export const checkAuth = async () => {
         return checkAuthorization.json();
     } else {
         registerStore.setAuthorizedFalse();
-        console.error("User has not been authorized successfully. Try again");
+        console.log("User has not been authorized successfully. Try again");
         return checkAuthorization.json();
     }
 }

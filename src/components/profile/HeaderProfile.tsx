@@ -16,10 +16,11 @@ const HeaderProfile = () => {
             headers: {'Content-Type': 'application/json'},
         })
         if (res.ok) {
-            registerStore.setAuthorizedTrue();
+            registerStore.setAuthorizedFalse();
             console.log("Logout successful")
         } else {
-            registerStore.setAuthorizedFalse();
+            console.log("Logout was not successful")
+            registerStore.setAuthorizedTrue();
         }
     }
 
