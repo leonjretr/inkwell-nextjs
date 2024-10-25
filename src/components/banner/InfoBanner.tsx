@@ -1,5 +1,4 @@
 import React from 'react';
-import {IoMdClose} from "react-icons/io";
 import {FaBookOpen} from "react-icons/fa6";
 import Link from "next/link";
 import Image from "next/image";

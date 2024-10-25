@@ -2,6 +2,7 @@ import React from 'react';
 import {FaUser} from "react-icons/fa";
 import {IoIosArrowDown} from "react-icons/io";
 import registerStore from "@/stores/registerStore";
+import Link from "next/link";
 // import NavDrawer from "@/components/drawer/NavDrawer";
 // import {MdArrowDropDown} from "react-icons/md";
 
@@ -41,10 +42,10 @@ const HeaderProfile = () => {
                 className="z-10 hidden font-poppinsFont group-hover:block absolute left-6 bg-white divide-y divide-gray-100 rounded-lg shadow w-auto dark:bg-gray-700">
                 <ul className="py-2 text-sm text-gray-700 dark:text-gray-200 grid grid-rows-4 col-auto">
                     <li>
-                        <button
+                        <Link href={"/myprofile"}
                             className="block w-full text-left px-4 py-2 hover:bg-caribCurrent hover:text-white dark:hover:bg-gray-600 dark:hover:text-white">My
                             Profile
-                        </button>
+                        </Link>
                     </li>
                     <li>
                         <button

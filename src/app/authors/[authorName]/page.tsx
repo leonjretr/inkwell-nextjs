@@ -1,5 +1,5 @@
 import React from "react";
-import AuthorPlate from "@/components/plates/AuthorPlate";
+import UserPlate from "@/components/plates/UserPlate";
 import {bookCards} from "@/config/bookCardData";
 import BookCard from "@/components/cards/BookCard";
 
@@ -7,7 +7,7 @@ const Page = ({params}: { params: { authorName: string } }) => {
     return (
         <div className="flex flex-col min-h-screen bg-white pb-10">
             <>
-                <AuthorPlate authorName={params.authorName}/>
+                <UserPlate authorName={params.authorName}/>
             </>
             <div className={"flex gap-x-3 justify-center"}>
                 {bookCards.map((bookCard) => (
