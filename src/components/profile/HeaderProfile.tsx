@@ -43,7 +43,7 @@ const HeaderProfile = () => {
                 <ul className="py-2 text-sm text-gray-700 dark:text-gray-200 grid grid-rows-4 col-auto">
                     <li>
                         <Link href={"/myprofile"}
-                            className="block w-full text-left px-4 py-2 hover:bg-caribCurrent hover:text-white dark:hover:bg-gray-600 dark:hover:text-white">My
+                              className="block w-full text-left px-4 py-2 hover:bg-caribCurrent hover:text-white dark:hover:bg-gray-600 dark:hover:text-white">My
                             Profile
                         </Link>
                     </li>
@@ -63,6 +63,12 @@ const HeaderProfile = () => {
                         <button
                             className="block w-full text-left px-4 py-2 hover:bg-caribCurrent hover:text-white dark:hover:bg-gray-600 dark:hover:text-white">My
                             Branches
+                        </button>
+                    </li>
+                    <li>
+                        <button
+                            className="block w-full text-left px-4 py-2 hover:bg-caribCurrent hover:text-white dark:hover:bg-gray-600 dark:hover:text-white">
+                            Settings
                         </button>
                     </li>
                     <li>

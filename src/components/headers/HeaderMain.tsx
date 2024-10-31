@@ -1,5 +1,5 @@
 "use client"
-import React, {useEffect} from 'react';
+import React, {useEffect, useLayoutEffect} from 'react';
 import Logo from "@/components/logo/Logo";
 import SearchBar from "@/components/search-bar/SearchBar";
 import LoginSignButton from "@/components/buttons/LoginSignButton";
@@ -25,8 +25,8 @@ const HeaderMain = () => {
     const setRegisterModalOpened = useModalStore((state) => state.openRegisterModal);
     const setRegisterModalClosed = useModalStore((state) => state.closeRegisterModal);
 
-    const [isAuth, setIsAuth] = React.useState<Response>({message: undefined});
-    useEffect(() => {
+    const [isAuth, setIsAuth] = React.useState<Response>({message: "Unauthorized"});
+    useLayoutEffect(() => {
         const checkAuthentication = async () => {
             const resData = await checkAuth()
                 .catch((error) => {
@@ -55,10 +55,13 @@ const HeaderMain = () => {
             className={"bg-headerColor w-full h-20 flex justify-between items-center px-3 border-b border-gray-300"}>
             <Logo/>
             <SearchBar/>
-            {isAuth.message == "Authorized" ? <HeaderProfile/> : <div>
+            {}
+            {isAuth.message == undefined && "Waiting..."}
+            {isAuth.message == "Unauthorized" && <div>
                 <LoginSignButton openModal={setLoginModalOpened}/>
                 <SignUpButton openModal={setRegisterModalOpened}/>
             </div>}
+            {isAuth.message == "Authorized" && <HeaderProfile/>}
             <>
                 <Modal showModal={loginModalOpened} closeModal={setLoginModalClosed}>
                     <LoginModal closeModal={setLoginModalClosed}/>
