@@ -1,4 +1,4 @@
-# Inkwell
+# Read me
 
 This project is publicly available for **viewing only**. No one is allowed to copy, modify, or use this code without explicit permission.
 
