@@ -3,13 +3,13 @@ import Link from "next/link";
 
 interface MyProfileNavButtonProps {
     title: string;
-    link: string;
+    linkTab: string;
     currentTab: boolean;
 }
 
-const MyProfileNavButton: FC<MyProfileNavButtonProps> = ({title, link, currentTab}) => {
+const MyProfileNavButton: FC<MyProfileNavButtonProps> = ({title, linkTab, currentTab}) => {
     return (
-        <Link href={`${link}`}
+        <Link href={`${linkTab}`}
               className={`font-poppinsFont text-base p-2 ${currentTab ? "border-b-2 border-thistle text-thistle" : "hover:border-b-2 hover:border-thistle hover:text-thistle"}`}>
             {title}
         </Link>

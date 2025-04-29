@@ -12,10 +12,9 @@ const NavDrawer: React.FC<NavDrawerProps> = ({isOpen, setIsOpen}) => {
     return (
         <div className={`${isOpen && "fixed inset-0 z-30 bg-black bg-opacity-15 overscroll-hidden backdrop-blur-sm"}`}>
             <div
-                className={`fixed top-0 right-0 z-40 h-screen p-4 overflow-y-auto transition-all transform duration-300 ${isOpen ? 'translate-x-0' : 'translate-x-full'} bg-white w-64 dark:bg-gray-800`}
-                >
-                <h5 id="drawer-navigation-label"
-                    className="text-base font-interFont font-semibold uppercase dark:text-gray-400">
+                className={`fixed top-0 right-0 z-40 h-screen p-4 overflow-y-auto transition-all transform duration-300 ${isOpen ? 'translate-x-0' : 'translate-x-full'} bg-white w-64`}
+            >
+                <h5 className="text-base font-interFont font-semibold uppercase dark:text-gray-400">
                     Bonnie Green
                 </h5>
                 <button
@@ -36,7 +35,6 @@ const NavDrawer: React.FC<NavDrawerProps> = ({isOpen, setIsOpen}) => {
                         <MenuButton name={"My Stories"} icon={<FaBook/>}/>
                         <MenuButton name={"My Branches"} icon={<FaCodeBranch/>}/>
                         <MenuButton name={"Log out"} icon={<FaSignOutAlt/>}/>
-
                         {/* Other menu items */}
                     </ul>
                 </div>

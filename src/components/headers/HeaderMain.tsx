@@ -42,7 +42,7 @@ const HeaderMain = () => {
     useEffect(() => {
         if (loginModalOpened || registerModalOpened) {
             document.body.style.overflow = 'hidden';
-            // document.body.classList.add('overflow-hidden');
+            // document.body.classList.newstory('overflow-hidden');
         } else {
             document.body.style.overflow = 'unset';
             // document.body.classList.remove('overflow-hidden');

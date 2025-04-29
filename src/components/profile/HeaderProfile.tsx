@@ -26,6 +26,7 @@ const HeaderProfile = () => {
     }
 
     return (
+
         <div className={"relative group"}>
             <button
                 onClick={() => setDrawerOpen(!drawerOpen)}
@@ -48,29 +49,29 @@ const HeaderProfile = () => {
                         </Link>
                     </li>
                     <li>
-                        <button
-                            className="block w-full text-left px-4 py-2 hover:bg-caribCurrent hover:text-white dark:hover:bg-gray-600 dark:hover:text-white">My
+                        <Link href={"/myprofile/myfavourites"}
+                              className="block w-full text-left px-4 py-2 hover:bg-caribCurrent hover:text-white dark:hover:bg-gray-600 dark:hover:text-white">My
                             Favourites
-                        </button>
+                        </Link>
                     </li>
                     <li>
-                        <button
-                            className="block w-full text-left px-4 py-2 hover:bg-caribCurrent hover:text-white dark:hover:bg-gray-600 dark:hover:text-white">My
+                        <Link href={"/myprofile/mystories"}
+                              className="block w-full text-left px-4 py-2 hover:bg-caribCurrent hover:text-white dark:hover:bg-gray-600 dark:hover:text-white">My
                             Stories
-                        </button>
+                        </Link>
                     </li>
                     <li>
-                        <button
-                            className="block w-full text-left px-4 py-2 hover:bg-caribCurrent hover:text-white dark:hover:bg-gray-600 dark:hover:text-white">My
+                        <Link href={"/myprofile/mybranches"}
+                              className="block w-full text-left px-4 py-2 hover:bg-caribCurrent hover:text-white dark:hover:bg-gray-600 dark:hover:text-white">My
                             Branches
-                        </button>
+                        </Link>
                     </li>
-                    <li>
-                        <button
-                            className="block w-full text-left px-4 py-2 hover:bg-caribCurrent hover:text-white dark:hover:bg-gray-600 dark:hover:text-white">
-                            Settings
-                        </button>
-                    </li>
+                    {/*<li>*/}
+                    {/*    <Link href={"/myprofile/settings"}*/}
+                    {/*        className="block w-full text-left px-4 py-2 hover:bg-caribCurrent hover:text-white dark:hover:bg-gray-600 dark:hover:text-white">*/}
+                    {/*        Settings*/}
+                    {/*    </Link>*/}
+                    {/*</li>*/}
                     <li>
                         <button
                             onClick={(event) => handleLogout(event)}
@@ -87,8 +88,7 @@ const HeaderProfile = () => {
             {/*    isOpen={drawerOpen}*/}
             {/*    setIsOpen={setDrawerOpen}/>*/}
         </div>
-    )
-        ;
+    );
 };
 
 export default HeaderProfile;

@@ -1,5 +1,6 @@
 import registerStore from "@/stores/registerStore";
-import {ILogin} from "@/types/ILogin";
+import {ILogin} from "@/lib/types";
+
 
 export const postLogin = async (
     data: ILogin,
@@ -17,7 +18,6 @@ export const postLogin = async (
     });
 
     const responseData = await res.json();
-    // Handle response (saving JWT token)
     if (res.ok) {
         console.log("You have been successfully logged in!");
         registerStore.setLoginSuccessfulTrue();

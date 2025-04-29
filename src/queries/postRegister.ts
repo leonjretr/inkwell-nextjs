@@ -1,5 +1,5 @@
-import {IRegisterName, IRegisterStock} from "@/types/IRegistration";
 import registerStore from "@/stores/registerStore";
+import {IRegisterName, IRegisterStock} from "@/lib/types";
 
 export const postRegister = async (
     data: IRegisterStock & IRegisterName,
