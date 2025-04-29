@@ -100,7 +100,7 @@ const RichEditor = () => {
                 {/* Save */}
                 <button
                     onClick={getContent}
-                    className="ml-auto bg-caribCurrent text-white px-4 py-2 rounded-md hover:bg-gray-700"
+                    className="ml-auto bg-caribCurrent text-white px-4 py-2 rounded-md hover:bg-gray-700 transition"
                 >
                     Save
                 </button>
