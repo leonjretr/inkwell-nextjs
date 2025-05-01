@@ -1,10 +1,15 @@
 'use client';
 
-import { useRef } from 'react';
+import {useRef} from 'react';
 
 const fonts = ['Inter', 'Poppins', 'Arial', 'Georgia', 'Times New Roman', 'Courier New'];
 
-const RichEditor = () => {
+interface RichEditorProps {
+    content?: string,
+    setContent: (value: string | undefined) => void;
+}
+
+const RichEditor = ({content, setContent}: RichEditorProps) => {
     const editorRef = useRef<HTMLDivElement>(null);
 
     const applyCommand = (command: string, value?: string) => {
@@ -29,7 +34,10 @@ const RichEditor = () => {
     };
 
     const getContent = () => {
-        console.log(editorRef.current?.innerHTML);
+        if(editorRef != undefined) {
+            setContent(editorRef.current?.innerHTML);
+            console.log(editorRef.current?.innerHTML);
+        }
         // You can POST this HTML to Strapi
     };
 
@@ -112,6 +120,7 @@ const RichEditor = () => {
                 contentEditable
                 suppressContentEditableWarning
                 className="min-h-[300px] w-full p-4 border rounded-xl bg-white shadow-md focus:outline-none"
+                aria-required={true}
             ></div>
         </div>
     );

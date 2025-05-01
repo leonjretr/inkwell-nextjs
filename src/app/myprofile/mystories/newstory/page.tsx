@@ -6,6 +6,7 @@ import TagsInput from '@/components/editor/TagsInput';
 import DescriptionInput from '@/components/editor/DescriptionInput'
 import PhotoUpload from '@/components/editor/PhotoUpload';
 import GenresSelect from "@/components/editor/GenresSelect";
+import { IStory } from '@/lib/types';
 
 const Page = () => {
     const [title, setTitle] = useState('');
@@ -16,39 +17,81 @@ const Page = () => {
     const [content, setContent] = useState('');
 
     const handleSubmit = async () => {
-        if (!genre) {
-            alert('Please select a genre');
-            return;
-        }
-
         const tagsArray = tagsInput
             .split(',')
-            .map((tag) => tag.trim())
-            .filter((tag) => tag.length > 0);
+            .map(tag => tag.trim())
+            .filter(tag => tag.length > 0);
 
         const formData = new FormData();
-        formData.append('title', title);
-        formData.append('description', description);
-        formData.append('genre', genre);
-        formData.append('tags', JSON.stringify(tagsArray)); // send array
-        formData.append('content', content); // HTML text from editor
 
-        if (photo) formData.append('photo', photo); // actual image file
+        const data: IStory = {
+            title,
+            description,
+            story_text: content, // formatted for your editor (e.g. blocks or HTML)
+            // story_genres: selectedGenreId, // must be an existing genre ID
+            // story_tags: tagsArray.map(tag => ({name: tag})), // new or existing tags
+        };
+
+        formData.append('data', JSON.stringify(data));
+        if (photo) formData.append('files.story_avatar', photo);
 
         try {
-            const res = await fetch('/api/stories', {
+            const res = await fetch("/api/reqs/post-story", {
                 method: 'POST',
-                body: formData,
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    title: data.title,
+                    description: data.description,
+                    story_text: data.story_text,
+                }),
             });
 
             if (!res.ok) throw new Error('Failed to post story');
-
-            alert('Story posted successfully!');
-        } catch (error) {
-            console.error(error);
-            alert('Something went wrong.');
+            // toast.success('Story created!');
+            // router.push('/my-stories');
+        } catch (err) {
+            console.error(err);
+            // toast.error('Failed to create story');
         }
     };
+
+
+    // const handleSubmit = async () => {
+    //     if (!genre) {
+    //         alert('Please select a genre');
+    //         return;
+    //     }
+    //
+    //     const tagsArray = tagsInput
+    //         .split(',')
+    //         .map((tag) => tag.trim())
+    //         .filter((tag) => tag.length > 0);
+    //
+    //     const formData = new FormData();
+    //     formData.append('title', title);
+    //     formData.append('description', description);
+    //     formData.append('genre', genre);
+    //     formData.append('tags', JSON.stringify(tagsArray)); // send array
+    //     formData.append('content', content); // HTML text from editor
+    //
+    //     if (photo) formData.append('photo', photo); // actual image file
+    //
+    //     try {
+    //         const res = await fetch('/api/stories', {
+    //             method: 'POST',
+    //             body: formData,
+    //         });
+    //
+    //         if (!res.ok) throw new Error('Failed to post story');
+    //
+    //         alert('Story posted successfully!');
+    //     } catch (error) {
+    //         console.error(error);
+    //         alert('Something went wrong.');
+    //     }
+    // };
     return (
         <div className={"flex flex-col min-h-screen"}>
             <div className={"flex justify-center my-10 font-poppinsFont text-3xl font-semibold"}>
@@ -58,7 +101,7 @@ const Page = () => {
                 <div className={"flex flex-col gap-y-5"}>
                     <TitleInput title={title} setTitle={setTitle}/>
                     <DescriptionInput description={description} setDescription={setDescription}/>
-                    <TagsInput tags={tagsInput} setTags={setTagsInput}/>
+                    <TagsInput tagsInput={tagsInput} setTagsInput={setTagsInput}/>
                 </div>
                 <div className={"flex flex-col gap-y-5"}>
                     <PhotoUpload photo={photo} setPhoto={setPhoto}/>

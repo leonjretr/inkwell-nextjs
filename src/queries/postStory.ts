@@ -5,6 +5,7 @@ export const postStory = async (data: IStory) => {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
+            Authorization: `Bearer `
         },
         body: JSON.stringify({
             title: data.title,
@@ -12,7 +13,7 @@ export const postStory = async (data: IStory) => {
             story_text: data.story_text,
             story_avatar: data.story_avatar,
             story_tags: data.story_tags,
-            story_genres:data.story_genres,
+            story_genres: data.story_genres,
         }),
     });
 

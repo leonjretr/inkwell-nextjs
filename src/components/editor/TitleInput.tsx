@@ -11,6 +11,7 @@ export default function TitleInput({ title, setTitle }: Props) {
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             className="w-full p-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-black"
+            required={true}
         />
     );
 }

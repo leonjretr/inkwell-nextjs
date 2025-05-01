@@ -34,6 +34,7 @@ const HeaderMain = () => {
                 })
                 .then();
             setIsAuth(resData)
+            console.log(resData)
         }
         checkAuthentication();
     }, [registerStore.isAuthorized]);
@@ -55,7 +56,6 @@ const HeaderMain = () => {
             className={"bg-headerColor w-full h-20 flex justify-between items-center px-3 border-b border-gray-300"}>
             <Logo/>
             <SearchBar/>
-            {}
             {isAuth.message == undefined && "Waiting..."}
             {isAuth.message == "Unauthorized" && <div>
                 <LoginSignButton openModal={setLoginModalOpened}/>
