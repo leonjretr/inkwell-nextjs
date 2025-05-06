@@ -5,7 +5,7 @@ export async function POST(req: Request) {
 
     const {title, description, story_text} = await req.json();
     const jwt = cookies().get("jwt")?.value;
-    console.log(jwt)
+    // console.log(jwt)
 
     const registerRes = await fetch(`${process.env.STRAPI_API}/api/stories`, {
         method: 'POST',

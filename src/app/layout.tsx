@@ -5,6 +5,7 @@ import Wrapper from "@/components/wrappers/Wrapper";
 import HeaderMain from "@/components/headers/HeaderMain";
 import Categories from "@/components/headers/Categories";
 import Footer from "@/components/footers/Footer";
+import {Toaster} from "react-hot-toast";
 
 export const metadata: Metadata = {
     title: "Inktells - reimagine favourite books",
@@ -26,6 +27,7 @@ export default function RootLayout({children}: Readonly<{
             <Categories/>
         </Wrapper>
         {children}
+        <Toaster position="top-center" />
         <Footer/>
         </body>
         </html>

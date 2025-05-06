@@ -1,12 +1,14 @@
 'use client';
 
-import {useRef} from 'react';
+import {Dispatch, SetStateAction, useEffect, useRef} from 'react';
+import toast from "react-hot-toast";
 
 const fonts = ['Inter', 'Poppins', 'Arial', 'Georgia', 'Times New Roman', 'Courier New'];
 
 interface RichEditorProps {
     content?: string,
-    setContent: (value: string | undefined) => void;
+    // setContent: (value: string | undefined) => void;
+    setContent: Dispatch<SetStateAction<string | undefined>>
 }
 
 const RichEditor = ({content, setContent}: RichEditorProps) => {
@@ -33,10 +35,20 @@ const RichEditor = ({content, setContent}: RichEditorProps) => {
         }
     };
 
-    const getContent = () => {
-        if(editorRef != undefined) {
+    useEffect(() => {
+        if (editorRef != undefined) {
             setContent(editorRef.current?.innerHTML);
-            console.log(editorRef.current?.innerHTML);
+        } else {
+            toast.error("editorRef is undefined")
+        }
+    }, [editorRef.current?.innerHTML, setContent]);
+
+    const getContent = () => {
+        if (editorRef != undefined) {
+            const html = editorRef.current?.innerHTML;
+            setContent(html);
+            console.log("it's content: "+ html)
+            console.log("it's ref: " + editorRef.current?.innerHTML);
         }
         // You can POST this HTML to Strapi
     };
@@ -119,8 +131,8 @@ const RichEditor = ({content, setContent}: RichEditorProps) => {
                 ref={editorRef}
                 contentEditable
                 suppressContentEditableWarning
-                className="min-h-[300px] w-full p-4 border rounded-xl bg-white shadow-md focus:outline-none"
-                aria-required={true}
+                className="h-[400px] w-full p-5 border rounded-xl bg-white shadow-md focus:outline-none break-words overflow-y-auto"
+
             ></div>
         </div>
     );

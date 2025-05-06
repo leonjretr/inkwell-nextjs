@@ -7,6 +7,8 @@ import DescriptionInput from '@/components/editor/DescriptionInput'
 import PhotoUpload from '@/components/editor/PhotoUpload';
 import GenresSelect from "@/components/editor/GenresSelect";
 import { IStory } from '@/lib/types';
+import toast from 'react-hot-toast';
+import {NodeHtmlMarkdown} from "node-html-markdown";
 
 const Page = () => {
     const [title, setTitle] = useState('');
@@ -14,9 +16,19 @@ const Page = () => {
     const [genre, setGenre] = useState('');
     const [tagsInput, setTagsInput] = useState('');
     const [photo, setPhoto] = useState<File | null>(null);
-    const [content, setContent] = useState('');
+    const [content, setContent] = useState<string | undefined>('');
+
+    // const [isSubmitting, setIsSubmitting] = useState(false);
 
     const handleSubmit = async () => {
+        if (title.trim().length < 2) return toast.error('Title must be at least 2 characters.');
+        if (description.trim().length < 5) return toast.error('Description must be at least 50 characters.');
+        if (!content || content.trim().length < 5){
+            console.log(content)
+            console.log("it's true")
+            return toast.error('Story must be at least 750 characters');
+        }
+
         const tagsArray = tagsInput
             .split(',')
             .map(tag => tag.trim())
@@ -24,10 +36,11 @@ const Page = () => {
 
         const formData = new FormData();
 
+        const contentMarkdown = NodeHtmlMarkdown.translate(content);
         const data: IStory = {
             title,
             description,
-            story_text: content, // formatted for your editor (e.g. blocks or HTML)
+            story_text: contentMarkdown, // formatted for your editor (e.g. blocks or HTML)
             // story_genres: selectedGenreId, // must be an existing genre ID
             // story_tags: tagsArray.map(tag => ({name: tag})), // new or existing tags
         };
@@ -36,7 +49,7 @@ const Page = () => {
         if (photo) formData.append('files.story_avatar', photo);
 
         try {
-            const res = await fetch("/api/reqs/post-story", {
+            const res = fetch("/api/reqs/post-story", {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -48,7 +61,11 @@ const Page = () => {
                 }),
             });
 
-            if (!res.ok) throw new Error('Failed to post story');
+            await toast.promise(res, {
+                loading: "Just a moment...",
+                success: "Story posted successfully!🎉🎉",
+                error: "Oops, something went wrong!😱😱"
+            })
             // toast.success('Story created!');
             // router.push('/my-stories');
         } catch (err) {
@@ -57,41 +74,6 @@ const Page = () => {
         }
     };
 
-
-    // const handleSubmit = async () => {
-    //     if (!genre) {
-    //         alert('Please select a genre');
-    //         return;
-    //     }
-    //
-    //     const tagsArray = tagsInput
-    //         .split(',')
-    //         .map((tag) => tag.trim())
-    //         .filter((tag) => tag.length > 0);
-    //
-    //     const formData = new FormData();
-    //     formData.append('title', title);
-    //     formData.append('description', description);
-    //     formData.append('genre', genre);
-    //     formData.append('tags', JSON.stringify(tagsArray)); // send array
-    //     formData.append('content', content); // HTML text from editor
-    //
-    //     if (photo) formData.append('photo', photo); // actual image file
-    //
-    //     try {
-    //         const res = await fetch('/api/stories', {
-    //             method: 'POST',
-    //             body: formData,
-    //         });
-    //
-    //         if (!res.ok) throw new Error('Failed to post story');
-    //
-    //         alert('Story posted successfully!');
-    //     } catch (error) {
-    //         console.error(error);
-    //         alert('Something went wrong.');
-    //     }
-    // };
     return (
         <div className={"flex flex-col min-h-screen"}>
             <div className={"flex justify-center my-10 font-poppinsFont text-3xl font-semibold"}>

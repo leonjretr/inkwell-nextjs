@@ -28,5 +28,5 @@ export interface IStory {
     story_text: string;
     story_avatar?: string;
     story_tags?: string[];
-    story_genres?:string[];
+    story_genres?: string[];
 }
