@@ -1,8 +1,10 @@
 "use client"
 import Link from 'next/link';
-import React, {FC} from 'react';
+import React, {FC, useEffect, useState} from 'react';
 import {MdArrowDropDown} from "react-icons/md";
 import {formatRoute} from "@/utilities/formatRoute";
+import {IGenresData} from "@/lib/types";
+import {getGenres} from "@/queries/getGenres";
 
 interface CategoryButtonHeaderProps {
     buttonText: string;
@@ -10,7 +12,18 @@ interface CategoryButtonHeaderProps {
     category: { title: string; genres: string[] };
 }
 
-const CategoryButtonHeader: FC<CategoryButtonHeaderProps> = ({buttonText, genres, category}) => {
+const CategoryButtonHeader: FC<CategoryButtonHeaderProps> = ({buttonText, category}) => {
+    const [genres, setGenres] = useState<IGenresData>();
+
+    useEffect(() => {
+        const getData = async () => {
+            const result = await getGenres();
+            setGenres(result);
+        }
+        getData();
+    }, []);
+
+
     return (
         <div className={"relative group"}>
             <button
@@ -23,10 +36,11 @@ const CategoryButtonHeader: FC<CategoryButtonHeaderProps> = ({buttonText, genres
             <div
                 className="z-10 hidden font-poppinsFont group-hover:block absolute left-6 bg-white divide-y divide-gray-100 rounded-lg shadow w-auto dark:bg-gray-700">
                 <ul className="py-2 text-sm text-gray-700 dark:text-gray-200 grid grid-rows-4 col-auto">
-                    {genres.map((genre, index) => (
-                        <li key={index}>
-                            <Link href={`/${encodeURIComponent(formatRoute(category.title))}/${encodeURIComponent(formatRoute(genre))}`}
-                                  className="block px-4 py-2 hover:bg-caribCurrent hover:text-white dark:hover:bg-gray-600 dark:hover:text-white">{genre}</Link>
+                    {genres?.data.map((genre) => (
+                        <li key={genre.genre_id}>
+                            <Link
+                                href={`/${encodeURIComponent(formatRoute(category.title))}/${encodeURIComponent(formatRoute(genre.name))}`}
+                                className="block px-4 py-2 hover:bg-caribCurrent hover:text-white dark:hover:bg-gray-600 dark:hover:text-white">{genre.name}</Link>
                         </li>
                     ))}
                 </ul>

@@ -3,7 +3,7 @@ import {NextResponse} from "next/server";
 
 export async function POST(req: Request) {
 
-    const {title, description, story_text} = await req.json();
+    const {title, description, story_text, genre} = await req.json();
     const jwt = cookies().get("jwt")?.value;
     // console.log(jwt)
 
@@ -18,6 +18,9 @@ export async function POST(req: Request) {
                 title: title,
                 description: description,
                 story_text: story_text,
+                genre: {
+                    id: genre
+                }
             }
         }),
     });
