@@ -28,5 +28,17 @@ export interface IStory {
     story_text: string;
     story_avatar?: string;
     story_tags?: string[];
-    story_genres?: string[];
+    genre: number | undefined;
+
+}
+
+export interface IGenre {
+    id: number | undefined;
+    genre_id: number;
+    name: string;
+    locale: string | null;
+}
+
+export interface IGenresData {
+    data: IGenre[];
 }

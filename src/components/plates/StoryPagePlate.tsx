@@ -27,7 +27,7 @@ const StoryPagePlate: FC<StoryPagePlaqueProps> = ({storyName}) => {
                     <div className={"flex flex-col text-white font-poppinsFont mx-6"}>
                         <div>
                             <div className={"text-5xl font-bold"}> {storyName}</div>
-                            <div className={"text-3xl font-medium mt-1.5"}>John Smollett</div>
+                            <div className={"text-3xl font-medium mt-1.5"}>Mark Spencer</div>
                             <div className={"mt-1 flex gap-x-3 items-center text-lg font-medium"}>
                                 <div>4231 views</div>
                                 <div>120 ratings</div>

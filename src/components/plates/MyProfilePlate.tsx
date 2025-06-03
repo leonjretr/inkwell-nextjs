@@ -19,7 +19,7 @@ const MyProfilePlate: FC<MyProfilePlateProps> = ({authorName}) => {
                     </div>
                     <div className={"flex flex-col text-white font-poppinsFont mx-6"}>
                         <div className={"text-5xl font-bold"}>{authorName}</div>
-                        <div className={"text-3xl font-medium mt-1.5"}> Renowned Russian writer</div>
+                        <div className={"text-3xl font-medium mt-1.5"}> Renowned author</div>
                         <div className={"flex gap-x-3 items-center mt-1 text-lg font-medium"}>
                             <div>33 story</div>
                             <div>120 subscribers</div>
@@ -37,7 +37,6 @@ const MyProfilePlate: FC<MyProfilePlateProps> = ({authorName}) => {
                     </a>
 
                 </div>
-
             </div>
         </div>
     );
