@@ -3,9 +3,10 @@ import {NextResponse} from "next/server";
 
 export async function POST(req: Request) {
 
-    const {title, description, story_text, genre} = await req.json();
+    const {title, description, story_text, genre, tags} = await req.json();
     const jwt = cookies().get("jwt")?.value;
-    // console.log(jwt)
+    const userId = cookies().get("id")?.value;
+    console.log("айди автора: " + userId);
 
     const registerRes = await fetch(`${process.env.STRAPI_API}/api/stories`, {
         method: 'POST',
@@ -20,6 +21,10 @@ export async function POST(req: Request) {
                 story_text: story_text,
                 genre: {
                     id: genre
+                },
+                tags: tags,
+                author: {
+                    id: userId,
                 }
             }
         }),

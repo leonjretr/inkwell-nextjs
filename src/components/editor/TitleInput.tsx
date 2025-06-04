@@ -5,13 +5,17 @@ type Props = {
 
 export default function TitleInput({ title, setTitle }: Props) {
     return (
-        <input
-            type="text"
-            placeholder="Story Title"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            className="w-full p-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-black"
-            required={true}
-        />
+        <div>
+            <label className={"block text-sm font-medium font-interFont p-1"}>Title</label>
+            <input
+                type="text"
+                placeholder="Story Title"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+                className="w-full p-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-black"
+                required={true}
+            />
+        </div>
+
     );
 }

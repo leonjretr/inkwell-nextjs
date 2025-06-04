@@ -27,9 +27,15 @@ export interface IStory {
     description: string;
     story_text: string;
     story_avatar?: string;
-    story_tags?: string[];
+    tags?: string;
     genre: number | undefined;
+}
 
+export interface IUser {
+    id: number;
+    name: string | null;
+    username: string | null;
+    email: string;
 }
 
 export interface IGenre {

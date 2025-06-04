@@ -6,6 +6,7 @@ export const checkAuth = async () => {
         headers: {
             'Content-Type': 'application/json',
         },
+        cache: "force-cache",
     });
     if (checkAuthorization.ok) {
         registerStore.setAuthorizedTrue();

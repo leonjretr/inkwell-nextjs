@@ -6,6 +6,7 @@ export const getGenres = async () => {
         headers: {
             'Content-Type': 'application/json'
         },
+        cache: "force-cache"
     })
     if (!getData.ok) {
         toast.error("Something happened while fetching data...")
