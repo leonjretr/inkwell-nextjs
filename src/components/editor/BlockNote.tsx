@@ -17,7 +17,7 @@ const BlockNote: FC<IBlockNoteProps> = ({setBlocks}) => {
     }
 
     return (
-        <div className="w-full max-w-3xl h-52 border-2 border-black rounded-lg">
+        <div className="w-full max-w-3xl h-64 border border-black rounded-lg overflow-y-scroll">
             <BlockNoteView editor={editor} linkToolbar={true} onChange={handleChange}/>
         </div>
 

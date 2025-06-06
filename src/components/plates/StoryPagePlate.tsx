@@ -1,13 +1,17 @@
 import React, {FC} from 'react';
 import Image from "next/image";
 import * as motion from "framer-motion/client";
-import {CiStar} from "react-icons/ci";
+import TagBadge from "@/components/badges/TagBadge";
 
 interface StoryPagePlaqueProps {
-    storyName: string;
+    storyName: string | undefined;
+    username: string;
+    name: string;
+    description: string;
+    tags:string;
 }
 
-const StoryPagePlate: FC<StoryPagePlaqueProps> = ({storyName}) => {
+const StoryPagePlate: FC<StoryPagePlaqueProps> = ({storyName, username, description, tags}) => {
     return (
         <div className={"p-10"}>
             <div className={"flex justify-between w-full bg-thistle p-5 rounded-2xl"}>
@@ -27,20 +31,26 @@ const StoryPagePlate: FC<StoryPagePlaqueProps> = ({storyName}) => {
                     <div className={"flex flex-col text-white font-poppinsFont mx-6"}>
                         <div>
                             <div className={"text-5xl font-bold"}> {storyName}</div>
-                            <div className={"text-3xl font-medium mt-1.5"}>Mark Spencer</div>
-                            <div className={"mt-1 flex gap-x-3 items-center text-lg font-medium"}>
-                                <div>4231 views</div>
-                                <div>120 ratings</div>
-                                <div>3 reviews</div>
+                            <div className={"text-3xl font-medium mt-1.5"}>{username}</div>
+                            <div className={"text-lg font-medium mt-1.5 max-w-2xl"}>{description}</div>
+                            {/*<div className={"mt-1 flex gap-x-3 items-center text-lg font-medium"}>*/}
+                            {/*    <div>4231 views</div>*/}
+                            {/*    <div>120 ratings</div>*/}
+                            {/*    <div>3 reviews</div>*/}
+                            {/*</div>*/}
+                            <div className={"flex flex-wrap w-full gap-x-0.5 gap-y-1 mt-3"}>
+                                {Array.isArray(tags) && tags.map((tag, index) => (
+                                    <TagBadge key={index} tagTitle={tag.trim()}/>
+                                ))}
                             </div>
                         </div>
-                        <div className={"flex mt-14 items-end"}>
-                            <div className={"flex items-center"}>
-                                <div className={"text-6xl text-yellow-400"}><CiStar/></div>
-                                <div className={"font-interFont text-6xl"}>4,3</div>
-                            </div>
-                            <div className={"font-interFont italic text-3xl mx-3 mb-1"}>average rating</div>
-                        </div>
+                        {/*<div className={"flex mt-14 items-end"}>*/}
+                        {/*    <div className={"flex items-center"}>*/}
+                        {/*        <div className={"text-6xl text-yellow-400"}><CiStar/></div>*/}
+                        {/*        <div className={"font-interFont text-6xl"}>4,3</div>*/}
+                        {/*    </div>*/}
+                        {/*    <div className={"font-interFont italic text-3xl mx-3 mb-1"}>average rating</div>*/}
+                        {/*</div>*/}
                     </div>
                 </div>
                 <div className={"flex flex-col items-start"}>
@@ -53,6 +63,7 @@ const StoryPagePlate: FC<StoryPagePlaqueProps> = ({storyName}) => {
                         {/*        ))}*/}
                         {/*    </div>*/}
                         {/*))}*/}
+
                     </div>
                 </div>
             </div>

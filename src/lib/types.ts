@@ -48,3 +48,28 @@ export interface IGenre {
 export interface IGenresData {
     data: IGenre[];
 }
+
+export interface IStoryData {
+    data: IStory[];
+}
+
+export interface IStory2 {
+    id:number;
+    title: string;
+    description: string;
+    story_text: string;
+    story_avatar?: string;
+    tags: string;
+    genre: number | undefined;
+    author: IUser2;
+    createdAt: string;
+}
+export interface IStoryData2 {
+    data: IStory2[];
+}
+export interface IUser2 {
+    id: number;
+    name: string;
+    username: string;
+    email: string;
+}

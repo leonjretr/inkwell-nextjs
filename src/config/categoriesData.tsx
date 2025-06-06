@@ -1,7 +1,7 @@
 export const categs = [
     {
         title: "New arrivals",
-        genres: ["Detectives", "Horrors", "Adventures", "Plays", "Westerns", "Psychological", "True Crime", "Russian Literature"]
+        genres: ["Horror", "Detective", "Adventures", "Plays", "Westerns", "Psychological", "True Crime", "Russian Literature"]
     },
     {
         title: "Popular",

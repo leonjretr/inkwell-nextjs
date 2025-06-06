@@ -8,13 +8,10 @@ import {getGenres} from "@/queries/getGenres";
 
 interface CategoryButtonHeaderProps {
     buttonText: string;
-    genres: string[];
-    category: { title: string; genres: string[] };
 }
 
-const CategoryButtonHeader: FC<CategoryButtonHeaderProps> = ({buttonText, category}) => {
+const CategoryButtonHeader: FC<CategoryButtonHeaderProps> = ({buttonText}) => {
     const [genres, setGenres] = useState<IGenresData>();
-
     useEffect(() => {
         const getData = async () => {
             const result = await getGenres();
@@ -22,7 +19,6 @@ const CategoryButtonHeader: FC<CategoryButtonHeaderProps> = ({buttonText, catego
         }
         getData();
     }, []);
-
 
     return (
         <div className={"relative group"}>
@@ -39,7 +35,7 @@ const CategoryButtonHeader: FC<CategoryButtonHeaderProps> = ({buttonText, catego
                     {genres?.data.map((genre) => (
                         <li key={genre.genre_id}>
                             <Link
-                                href={`/${encodeURIComponent(formatRoute(category.title))}/${encodeURIComponent(formatRoute(genre.name))}`}
+                                href={`/${encodeURIComponent(formatRoute(buttonText))}/${encodeURIComponent(formatRoute(genre.name))}`}
                                 className="block px-4 py-2 hover:bg-caribCurrent hover:text-white dark:hover:bg-gray-600 dark:hover:text-white">{genre.name}</Link>
                         </li>
                     ))}
