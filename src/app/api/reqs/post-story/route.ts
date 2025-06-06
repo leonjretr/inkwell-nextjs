@@ -3,10 +3,22 @@ import {NextResponse} from "next/server";
 
 export async function POST(req: Request) {
 
-    const {title, description, story_text, genre, tags} = await req.json();
+    const {title, description, story_text, genre, tags, story_avatar} = await req.json();
     const jwt = cookies().get("jwt")?.value;
     const userId = cookies().get("id")?.value;
     console.log("айди автора: " + userId);
+
+    const payload = {
+        data: {
+            title,
+            description,
+            story_text,
+            genre: {id: genre},
+            tags,
+            author: {id: userId},
+            story_avatar: story_avatar ? {id: story_avatar} : null, // Null if no image
+        }
+    };
 
     const registerRes = await fetch(`${process.env.STRAPI_API}/api/stories`, {
         method: 'POST',
@@ -14,20 +26,7 @@ export async function POST(req: Request) {
             'Content-Type': 'application/json',
             Authorization: `Bearer ${jwt}`
         },
-        body: JSON.stringify({
-            data: {
-                title: title,
-                description: description,
-                story_text: story_text,
-                genre: {
-                    id: genre
-                },
-                tags: tags,
-                author: {
-                    id: userId,
-                }
-            }
-        }),
+        body: JSON.stringify(payload),
     });
 
     const resp = await registerRes.json();

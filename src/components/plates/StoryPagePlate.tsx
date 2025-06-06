@@ -9,16 +9,17 @@ interface StoryPagePlaqueProps {
     name: string;
     description: string;
     tags:string;
+    avatarUrl: string | undefined;
 }
 
-const StoryPagePlate: FC<StoryPagePlaqueProps> = ({storyName, username, description, tags}) => {
+const StoryPagePlate: FC<StoryPagePlaqueProps> = ({storyName, username, description, tags, avatarUrl}) => {
     return (
         <div className={"p-10"}>
             <div className={"flex justify-between w-full bg-thistle p-5 rounded-2xl"}>
                 <div className={"flex"}>
                     <div className={"flex flex-col"}>
                         <Image className={"rounded-lg border-2 border-white"} alt={"Author"}
-                               src={"/images/cover2.jpg"}
+                               src={`http://localhost:1337${avatarUrl}`}
                                height={"150"}
                                width={"150"}/>
                         <motion.button
@@ -63,7 +64,6 @@ const StoryPagePlate: FC<StoryPagePlaqueProps> = ({storyName, username, descript
                         {/*        ))}*/}
                         {/*    </div>*/}
                         {/*))}*/}
-
                     </div>
                 </div>
             </div>

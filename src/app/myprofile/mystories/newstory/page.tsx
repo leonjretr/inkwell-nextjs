@@ -22,30 +22,63 @@ const Page = () => {
 
     const router = useRouter();
 
-    const handleSubmit = async () => {
+    const handleSubmit = async (event: React.MouseEvent<HTMLButtonElement>) => {
+        event.preventDefault();
+
         if (title.trim().length < 2) return toast.error('Title must be at least 2 characters.');
-        if (description.trim().length < 5) return toast.error('Description must be at least 50 characters.');
-        if (!blocks) {
+        if (description.trim().length < 5) return toast.error('Description must be at least 5 characters.');
+        if (!blocks || blocks.trim().length < 100) {
             return toast.error('Story must be at least 750 characters');
         }
         if (!genre) {
-            return toast.error("Sorry, you haven't assigned any genre")
+            return toast.error("Sorry, you haven't assigned any genre");
         }
 
-        await getMe()
-            .catch((error) => {
-                console.error(error + "The error happened while trying to authorize user.")
-            })
-            .then();
+        try {
+            await getMe();
+        } catch (error) {
+            console.error("Error while getting my ID:", error);
+            return toast.error("UserID failed");
+        }
+
+        let coverId: number | null = null;
+        if (photo) {
+            const formData = new FormData();
+            formData.append("files", photo);
+
+            try {
+                const uploadRes = await fetch(`http://localhost:1337/api/upload/`, {
+                    method: "POST",
+                    body: formData,
+                });
+
+                const uploadedImage = await uploadRes.json();
+                if (!uploadRes.ok) {
+                    console.error("Upload error:", uploadedImage);
+                    return toast.error("Image upload failed");
+                }
+
+                // Check if response has data and extract ID
+                if (uploadedImage && Array.isArray(uploadedImage) && uploadedImage[0]?.id) {
+                    coverId = uploadedImage[0].id;
+                } else {
+                    console.error("Invalid upload response:", uploadedImage);
+                    return toast.error("Failed to get uploaded image ID");
+                }
+            } catch (error) {
+                console.error("Upload exception:", error);
+                return toast.error("Image upload failed");
+            }
+        }
 
         const data: IStory = {
             title,
             description,
             story_text: blocks,
-            genre: genre,
+            genre,
             tags: JSON.stringify(tags),
+            story_avatar: coverId,
         };
-
 
         try {
             const res = fetch("/api/reqs/post-story", {
@@ -59,6 +92,7 @@ const Page = () => {
                     story_text: data.story_text,
                     genre: data.genre,
                     tags: data.tags,
+                    story_avatar: data.story_avatar,
                 }),
             }).finally(() => router.push('/myprofile/mystories'));
 
@@ -68,7 +102,8 @@ const Page = () => {
                 error: "Oops, something went wrong!😱😱"
             })
         } catch (err) {
-            console.error(err);
+            console.error("Story submission error: " + err);
+            throw err;
         }
     };
 

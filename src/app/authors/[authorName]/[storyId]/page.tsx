@@ -33,7 +33,9 @@ const Page = ({params}: { params: { storyId: number } }) => {
                                             username={sstory.author.username}
                                             name={sstory.author.name}
                                             description={sstory.description}
-                                            tags={sstory.tags}/>
+                                            tags={sstory.tags}
+                                            avatarUrl={sstory.story_avatar}
+                            />
                             <div className="px-10 pt-5">
                                 <MarkdownRenderer content={sstory.story_text}/>
                             </div>

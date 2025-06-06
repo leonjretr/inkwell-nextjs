@@ -26,7 +26,7 @@ export interface IStory {
     title: string;
     description: string;
     story_text: string;
-    story_avatar?: string;
+    story_avatar: number | null;
     tags?: string;
     genre: number | undefined;
 }
