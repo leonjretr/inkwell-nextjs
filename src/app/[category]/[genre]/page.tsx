@@ -37,9 +37,10 @@ const Page = ({params}: { params: { genre: string } }) => {
                         ? Array.from({length: 3}).map((_, index) => <BookCardSkeleton key={index}/>)
                         : stories?.data.map((bookCard, index) => (
                             <BookCard
+                                authorName={bookCard.author.username}
                                 key={index} id={bookCard.id} title={bookCard.title}
-                                author={bookCard?.author?.username} uploadDate={bookCard.createdAt}
-                                tags={bookCard.tags}
+                                author={bookCard?.author?.id} uploadDate={bookCard.createdAt}
+                                tags={bookCard.tags} avatarUrl={bookCard.story_avatar.url}
                             />
                         ))
                     }

@@ -3,36 +3,35 @@ import {NextResponse} from "next/server";
 
 export async function POST(req: Request) {
 
-    const {title, description, story_text, genre, tags, story_avatar} = await req.json();
+    const {storyId} = await req.json();
+
     const jwt = cookies().get("jwt")?.value;
     const userId = cookies().get("id")?.value;
 
-    const payload = {
-        data: {
-            title,
-            description,
-            story_text,
-            genre: {id: genre},
-            tags,
-            author: {id: userId},
-            story_avatar: story_avatar ? {id: story_avatar} : null, // Null if no image
-        }
-    };
-
-    const registerRes = await fetch(`${process.env.STRAPI_API}/api/stories`, {
+    console.log("STORY ID: " + storyId);
+    const postFav = await fetch(`${process.env.STRAPI_API}/api/favourites`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
             Authorization: `Bearer ${jwt}`
         },
-        body: JSON.stringify(payload),
+        body: JSON.stringify({
+            data: {
+                user: {
+                    id: userId
+                },
+                story: {
+                    id: storyId,
+                },
+            }
+        }),
     });
+    const resp = await postFav.json();
 
-    const resp = await registerRes.json();
-
-    if (registerRes.ok) {
+    if (postFav.ok) {
         return NextResponse.json({message: 'Story posted successfully'}, {status: 200});
     } else {
         return NextResponse.json({message: 'Posting failed. Try again', error: resp.error}, {status: 400});
     }
+
 }

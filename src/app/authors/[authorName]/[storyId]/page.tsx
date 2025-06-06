@@ -29,12 +29,13 @@ const Page = ({params}: { params: { storyId: number } }) => {
                     ? <StoryPlateSkeleton/>
                     : story?.data?.map((sstory) => (
                         <div key={sstory.id}>
-                            <StoryPagePlate storyName={sstory.title}
+                            <StoryPagePlate storyId={sstory.id}
+                                            storyName={sstory.title}
                                             username={sstory.author.username}
                                             name={sstory.author.name}
                                             description={sstory.description}
                                             tags={sstory.tags}
-                                            avatarUrl={sstory.story_avatar}
+                                            avatarUrl={sstory.story_avatar.url}
                             />
                             <div className="px-10 pt-5">
                                 <MarkdownRenderer content={sstory.story_text}/>

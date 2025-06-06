@@ -24,6 +24,15 @@ export async function GET() {
             maxAge: 60 * 60 * 24 * 7 * 55,
             sameSite: 'strict',
         })
+        cookies().set({
+            name: "username",
+            value: data.username,
+            httpOnly: true,
+            secure: process.env.NODE_ENV === 'production',
+            path: '/',
+            maxAge: 60 * 60 * 24 * 7 * 55,
+            sameSite: 'strict',
+        })
         return NextResponse.json({message: 'Data received successful', data: data});
     } else {
         // Send error response

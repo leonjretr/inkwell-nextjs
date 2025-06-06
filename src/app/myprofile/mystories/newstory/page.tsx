@@ -33,6 +33,9 @@ const Page = () => {
         if (!genre) {
             return toast.error("Sorry, you haven't assigned any genre");
         }
+        if (!photo) {
+            return toast.error("Sorry, you must attach story cover!")
+        }
 
         try {
             await getMe();

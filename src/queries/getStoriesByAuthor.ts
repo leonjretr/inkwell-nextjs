@@ -1,5 +1,5 @@
-export const getStoriesByGenre = async (author: string) => {
-    const res = await fetch(`http://localhost:1337/api/stories?filters[author][name][$eqi]=${author}&populate=*`, {
+export const getStoriesByAuthor = async (author: number) => {
+    const res = await fetch(`http://localhost:1337/api/stories?filters[author][id][$eq]=${author}&populate=*`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json'

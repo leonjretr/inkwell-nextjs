@@ -2,29 +2,30 @@ import React, {FC} from 'react';
 import Image from "next/image";
 import TagBadge from "@/components/badges/TagBadge";
 import Link from "next/link";
-import {formatRoute} from "@/utilities/formatRoute";
 import { formatDate } from '@/utilities/formatDate';
 
 interface BookCardProps {
     id:number;
     title: string;
-    author: string | undefined;
+    author: number;
+    authorName: string;
     uploadDate: string;
     tags: string;
     rating?: number;
+    avatarUrl:string;
 }
 
-const BookCard: FC<BookCardProps> = ({id, title, author, uploadDate, tags}) => {
+const BookCard: FC<BookCardProps> = ({id, title, author, authorName, uploadDate, tags, avatarUrl}) => {
     return (
         <div
-            className="max-w-48 flex flex-col text-center bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-            {author && <Link href={`/authors/${formatRoute(author)}/${id}`}>
-                <Image className="mx-auto rounded-t-lg" src="/images/cover.jpg" alt="BookCover"
+            className="w-[200px] flex flex-col text-center bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+            {author && <Link href={`/authors/${author}/${id}`}>
+                <Image className="mx-auto rounded-t-lg object-cover w-[200px] h-[300px]" src={`http://localhost:1337${avatarUrl}`} alt="BookCover"
                        width={200}
                        height={300}/>
             </Link>}
             <div className="flex flex-col p-2">
-                {author && <Link href={`/authors/${formatRoute(author)}/${id}`}>
+                {author && <Link href={`/authors/${author}/${id}`}>
                     <button
                         className="relative group text-base font-bold tracking-tight text-gray-900 font-poppinsFont rounded-lg p-0.5 text-center inline-flex items-center"
                     >
@@ -33,10 +34,10 @@ const BookCard: FC<BookCardProps> = ({id, title, author, uploadDate, tags}) => {
                             className={"absolute bottom-0.5 left-0.5 w-0 h-0.5 bg-black dark:bg-white transition-all group-hover:w-full"}></span>
                     </button>
                 </Link>}
-                {author && <Link href={`/authors/${formatRoute(author)}`}>
+                {author && <Link href={`/authors/${author}`}>
                     <button
                         className="mb-0.5 relative group font-light p-0.5 font-poppinsFont text-gray-700 dark:text-gray-400">
-                        {author}
+                        {authorName}
                         <span
                             className={"absolute bottom-0.5 left-0.5 w-0 h-0.25 bg-gray-700 dark:bg-white transition-all group-hover:w-full"}>
                         </span>

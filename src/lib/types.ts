@@ -54,22 +54,33 @@ export interface IStoryData {
 }
 
 export interface IStory2 {
-    id:number;
+    id: number;
     title: string;
     description: string;
     story_text: string;
-    story_avatar?: string;
+    story_avatar: StoryAvatar;
     tags: string;
     genre: number | undefined;
     author: IUser2;
     createdAt: string;
 }
+
 export interface IStoryData2 {
     data: IStory2[];
 }
+
 export interface IUser2 {
     id: number;
     name: string;
     username: string;
     email: string;
+}
+
+export interface StoryAvatar {
+    id: number;
+    name: string;
+    width: number;
+    height: number;
+    url: string;
+
 }
