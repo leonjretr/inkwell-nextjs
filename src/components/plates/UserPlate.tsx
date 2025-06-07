@@ -13,7 +13,7 @@ const UserPlate: FC<UserPlateProps> = ({authorName, storiesNumber}) => {
             <div className={"flex w-full bg-thistle p-5 rounded-2xl"}>
                 <div className={"flex flex-col"}>
                     <Image className={"rounded-xl border-2 border-white"} alt={"Author"}
-                           src={"/images/bradpitt.jpg"}
+                           src={"/images/user.jpg"}
                            height={"150"}
                            width={"150"}/>
                     <motion.button

@@ -12,7 +12,7 @@ export async function POST(req: Request) {
             title,
             description,
             story_text,
-            genre: {id: genre},
+            genre: genre,
             tags,
             author: {id: userId},
             story_avatar: story_avatar ? {id: story_avatar} : null, // Null if no image

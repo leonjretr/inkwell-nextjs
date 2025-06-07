@@ -10,8 +10,8 @@ import SignUpModal from "@/components/modals/SignUpModal";
 import {useModalStore} from "@/stores/useModalStore";
 import HeaderProfile from "@/components/profile/HeaderProfile";
 import {checkAuth} from "@/queries/checkAuth";
-import registerStore from "@/stores/registerStore";
 import {observer} from "mobx-react-lite";
+import registerStore from "@/stores/registerStore";
 
 interface Response {
     message: string | undefined;

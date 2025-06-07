@@ -1,5 +1,5 @@
 "use client"
-import React, {FC, useEffect, useState} from 'react';
+import React, {FC, useCallback, useEffect, useState} from 'react';
 import Image from "next/image";
 import * as motion from "framer-motion/client";
 import TagBadge from "@/components/badges/TagBadge";
@@ -40,10 +40,9 @@ const StoryPagePlate: FC<StoryPagePlaqueProps> = ({
                 });
                 setIsFavourite(true);
             } else {
-                const res = fetch("/api/reqs/deletelike", {
+                const res = fetch(`/api/reqs/deletelike?storyId=${storyId}`, {
                     method: "DELETE",
                     headers: {"Content-Type": "application/json"},
-                    body: JSON.stringify({story: storyId}),
                 });
 
                 await toast.promise(res, {
@@ -59,7 +58,7 @@ const StoryPagePlate: FC<StoryPagePlaqueProps> = ({
         }
     };
 
-    const checkFavourites = async () => {
+    const checkFavourites = useCallback(async () => {
         try {
             const res = await fetch(`/api/reqs/checklike?storyId=${storyId}`);
             const data = await res.json();
@@ -67,10 +66,11 @@ const StoryPagePlate: FC<StoryPagePlaqueProps> = ({
         } catch (err) {
             console.error("Failed to check favourites", err);
         }
-    };
+    }, [storyId]);
+
     useEffect(() => {
         checkFavourites();
-    }, []);
+    }, [checkFavourites]);
 
     return (
         <div className={"p-10"}>

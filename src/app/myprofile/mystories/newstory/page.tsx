@@ -1,6 +1,5 @@
 "use client"
 import React, {useState} from 'react';
-import BlockNote from '@/components/editor/BlockNote';
 import {IStory} from "@/lib/types";
 import toast from 'react-hot-toast';
 import TitleInput from '@/components/editor/TitleInput';
@@ -10,7 +9,10 @@ import GenresSelect from '@/components/editor/GenresSelect';
 import {getMe} from "@/queries/getMe";
 import TagsManager from "@/components/editor/TagsManager";
 import {useRouter} from "next/navigation";
-
+import dynamic from 'next/dynamic';
+const BlockNote = dynamic(() => import('@/components/editor/BlockNote'), {
+    ssr: false,
+});
 
 const Page = () => {
     const [title, setTitle] = useState('');

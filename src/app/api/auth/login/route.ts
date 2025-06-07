@@ -14,7 +14,6 @@ export async function POST(req: Request) {
             identifier: identifier,
             password: password,
         }),
-        cache: "force-cache",
     });
 
     const data = await loginRes.json();

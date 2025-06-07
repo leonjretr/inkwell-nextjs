@@ -47,7 +47,7 @@ const HeaderProfile = () => {
                 className="flex relative group items-center p-0.5 text-sm pe-1 font-semibold rounded-lg hover:text-blue-600 dark:hover:text-blue-500 md:me-0 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:text-white"
                 type="button">
                 <FaUser className="text-3xl p-1 bg-gray-200 text-gray-700 me-2 rounded-lg"/>
-                {myData ? myData?.email : "Loading..."}
+                {myData?.email}
                 <div className={"mt-0.5 mx-1.5"}>
                     <IoIosArrowDown/>
                 </div>

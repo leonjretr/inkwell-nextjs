@@ -30,7 +30,7 @@ const Page = ({params}: { params: { authorName: number } }) => {
                 <div className={"flex justify-center font-poppinsFont text-2xl mb-5"}>
                     <h1>Authors stories</h1>
                 </div>
-                <div className={"flex gap-x-3 justify-center"}>
+                <div className={"flex flex-wrap gap-x-3 justify-center mx-20 gap-y-4"}>
                     {stories?.data.map((bookCard) => (
                         <BookCard key={bookCard.id} title={bookCard.title}
                                   id={bookCard.id}

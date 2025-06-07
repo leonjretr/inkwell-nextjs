@@ -14,12 +14,13 @@ const MyProfilePlate: FC<MyProfilePlateProps> = ({authorName, authorId}) => {
     const [stories, setStories] = useState<IStoryData2>();
 
     useEffect(() => {
+        if(!authorId) return;
         const getData = async () => {
             const result = await getStoriesByAuthor(authorId);
             setStories(result);
         }
         getData();
-    }, []);
+    }, [authorId]);
 
     return (
         <div className={"px-10 pt-10"}>

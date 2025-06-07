@@ -16,19 +16,19 @@ const ProfileFavStoriesCard = () => {
 
     return (
         <div className={"w-140 h-full bg-white rounded-lg border border-gray-200 shadow"}>
-            {!favStories?.data || favStories.data.length < 1 ? (
+            {!favStories?.data || favStories.data.length < 1 && (
                 <div className="flex justify-center m-3">
                     <h1 className="font-interFont text-xl font-bold">No favourite stories!</h1>
                 </div>
-            ) : (favStories.data.map((story) => (
-                    <div key={story.id} className={"p-2"}>
-                        <StoryProfilePlate title={story.story.title} author={story.user.username}
-                                           tags={story.story.tags}
-                                           authorId={story.user.id}
-                                           storyId={story.story.id}/>
-                    </div>
-                ))
             )}
+            {favStories && favStories.data.filter(story => story.story !== null).map((story) => (
+                <div key={story.id} className={"p-2"}>
+                    <StoryProfilePlate title={story.story.title} author={story.user.username}
+                                       tags={story.story.tags}
+                                       authorId={story.user.id}
+                                       storyId={story.story.id}/>
+                </div>))}
+
         </div>
     );
 };

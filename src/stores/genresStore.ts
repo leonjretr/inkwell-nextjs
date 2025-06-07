@@ -1,4 +1,5 @@
-import { IGenresData } from "@/lib/types";
+/* eslint-disable react/no-is-mounted */
+import {IGenresData} from "@/lib/types";
 import {makeAutoObservable, runInAction} from "mobx";
 import {getGenres} from "@/queries/getGenres";
 

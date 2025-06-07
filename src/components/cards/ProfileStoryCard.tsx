@@ -11,12 +11,13 @@ interface ProfileStoryCardProps {
 const ProfileStoryCard: FC<ProfileStoryCardProps> = ({userId}) => {
     const [stories, setStories] = useState<IStoryData2>();
     useEffect(() => {
+        if(!userId) return;
         const getData = async () => {
             const result = await getStoriesByAuthor(userId);
             setStories(result);
         }
         getData();
-    }, []);
+    }, [userId]);
 
     return (
         <div className={"w-140 h-full bg-white rounded-lg border border-gray-200 shadow"}>

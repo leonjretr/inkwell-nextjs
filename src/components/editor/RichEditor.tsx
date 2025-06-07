@@ -11,7 +11,7 @@ interface RichEditorProps {
     setContent: Dispatch<SetStateAction<string | undefined>>
 }
 
-const RichEditor = ({content, setContent}: RichEditorProps) => {
+const RichEditor = ({setContent}: RichEditorProps) => {
     const editorRef = useRef<HTMLDivElement>(null);
 
     const applyCommand = (command: string, value?: string) => {
@@ -47,7 +47,7 @@ const RichEditor = ({content, setContent}: RichEditorProps) => {
         if (editorRef != undefined) {
             const html = editorRef.current?.innerHTML;
             setContent(html);
-            console.log("it's content: "+ html)
+            console.log("it's content: " + html)
             console.log("it's ref: " + editorRef.current?.innerHTML);
         }
         // You can POST this HTML to Strapi

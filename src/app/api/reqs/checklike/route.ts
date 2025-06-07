@@ -4,7 +4,6 @@ import {NextResponse} from "next/server";
 export async function GET(req: Request) {
     const { searchParams } = new URL(req.url);
     const storyId = searchParams.get("storyId");
-    console.log(storyId);
     const jwt = cookies().get("jwt")?.value;
     const userId = cookies().get("id")?.value;
 

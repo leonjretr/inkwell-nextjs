@@ -1,7 +1,6 @@
 "use client"
 import Link from 'next/link';
 import React, {FC, } from 'react';
-import {MdArrowDropDown} from "react-icons/md";
 import {formatRoute} from "@/utilities/formatRoute";
 
 interface CategoryButtonHeaderProps {
@@ -24,7 +23,7 @@ const CategoryButtonHeader: FC<CategoryButtonHeaderProps> = ({buttonText}) => {
                 <button
                     className="relative group text-smokyBlack font-poppinsFont font-medium rounded-lg text-sm p-1.5 text-center inline-flex items-center"
                 >
-                    {buttonText} <MdArrowDropDown className={"text-lg"}/>
+                    {buttonText}
                     <span
                         className={"absolute bottom-0.5 left-0.5 w-0 h-0.5 bg-black dark:bg-white transition-all group-hover:w-full group-focus:w-full"}>
         </span>
@@ -60,3 +59,6 @@ const CategoryButtonHeader: FC<CategoryButtonHeaderProps> = ({buttonText}) => {
 };
 
 export default CategoryButtonHeader;
+
+
+// <MdArrowDropDown className={"text-lg"}
