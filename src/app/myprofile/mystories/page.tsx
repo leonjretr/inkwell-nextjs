@@ -2,9 +2,6 @@
 import React, {useEffect} from 'react';
 import MyProfilePlateNavPart from "@/components/parts/MyProfilePlateNavPart";
 import ProfileStoryCard from "@/components/cards/ProfileStoryCard";
-import SearchBarProfile from "@/components/search-bar/SearchBarProfile";
-import {PiSortDescendingLight} from "react-icons/pi";
-import {CiFilter} from "react-icons/ci";
 import {IUser2} from "@/lib/types";
 import MyProfilePlateSkeleton from "@/components/skeletons/MyProfilePlateSkeleton";
 
@@ -42,7 +39,7 @@ const Page = () => {
                 {/*</div>*/}
 
                 <div className={"mx-14 mt-3"}>
-                    <ProfileStoryCard userId={myData?.id} page={"Author"}/>
+                    <ProfileStoryCard userId={myData?.id}/>
                 </div>
             </>) : <MyProfilePlateSkeleton/>}
         </div>

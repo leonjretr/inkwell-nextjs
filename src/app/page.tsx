@@ -49,7 +49,7 @@ export default function Home() {
                             />
                         ))}
                     </div>
-                </>) : <div className={"flex gap-x-5"}>{Array.from({length: 3}).map(() => (<BookCardSkeleton/>))}</div>}
+                </>) : <div className={"flex gap-x-5"}>{Array.from({length: 3}).map((_, index) => (<div key={index}><BookCardSkeleton/></div>))}</div>}
         </div>
     );
 }

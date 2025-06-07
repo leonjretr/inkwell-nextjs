@@ -2,7 +2,6 @@
 import React, {useEffect} from 'react';
 import MyProfilePlateNavPart from "@/components/parts/MyProfilePlateNavPart";
 import {IUser2} from "@/lib/types";
-import ProfileStoryCard from "@/components/cards/ProfileStoryCard";
 import MyProfilePlateSkeleton from "@/components/skeletons/MyProfilePlateSkeleton";
 import ProfileFavStoriesCard from "@/components/cards/ProfileFavStoriesCard";
 
