@@ -61,7 +61,7 @@ const StoryPagePlate: FC<StoryPagePlaqueProps> = ({
 
     const checkFavourites = async () => {
         try {
-            const res = await fetch(`/api/reqs/checklike`);
+            const res = await fetch(`/api/reqs/checklike?storyId=${storyId}`);
             const data = await res.json();
             setIsFavourite(data?.data?.length > 0);
         } catch (err) {

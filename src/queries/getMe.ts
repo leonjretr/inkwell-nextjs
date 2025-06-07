@@ -4,7 +4,6 @@ export const getMe = async () => {
         headers: {
             'Content-Type': 'application/json',
         },
-        cache:"force-cache",
     });
     if (getMyData.ok) {
         return getMyData.json();

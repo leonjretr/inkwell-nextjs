@@ -21,7 +21,6 @@ const Page = ({params}: { params: { genre: string } }) => {
         getData();
     }, []);
 
-
     return (
         <div className={"grid grid-cols-[auto_1fr] min-h-screen w-full px-4"}>
             <div className={"flex flex-col justify-start mt-10"}>

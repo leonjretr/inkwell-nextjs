@@ -82,5 +82,25 @@ export interface StoryAvatar {
     width: number;
     height: number;
     url: string;
+}
 
+
+export interface IFavStory {
+    id: number;
+    title: string;
+    description: string;
+    story_text: string;
+    story_avatar: StoryAvatar;
+    tags: string;
+    genre: number | undefined;
+    author: IUser2;
+    createdAt: string;
+}
+export interface IFavStoryDataData {
+    id: number;
+    user: IUser2;
+    story: IFavStory;
+}
+export interface IFavStoryData {
+    data: IFavStoryDataData[];
 }

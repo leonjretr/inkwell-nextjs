@@ -10,7 +10,6 @@ export async function GET() {
             'Content-Type': 'application/json',
             Authorization: `Bearer ${token}`,
         },
-        cache: "force-cache",
     });
     const data = await getMyData.json();
 
@@ -33,6 +32,7 @@ export async function GET() {
             maxAge: 60 * 60 * 24 * 7 * 55,
             sameSite: 'strict',
         })
+        console.log("ЭТО НАША ДАТА: " + data.username)
         return NextResponse.json({message: 'Data received successful', data: data});
     } else {
         // Send error response

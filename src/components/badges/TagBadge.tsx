@@ -5,7 +5,7 @@ interface TagBadgeProps {
 const TagBadge:FC<TagBadgeProps> = ({tagTitle}) => {
     return (
         <span
-            className="bg-gray-200 text-gray-700 text-xs font-semibold px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300">
+            className="bg-gray-200 mx-1 text-gray-700 text-xs font-semibold px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300">
             {tagTitle}
         </span>
     );

@@ -1,13 +1,27 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {FaUser} from "react-icons/fa";
 import {IoIosArrowDown} from "react-icons/io";
 import registerStore from "@/stores/registerStore";
 import Link from "next/link";
-// import NavDrawer from "@/components/drawer/NavDrawer";
-// import {MdArrowDropDown} from "react-icons/md";
+import {IUser2} from "@/lib/types";
 
 const HeaderProfile = () => {
     const [drawerOpen, setDrawerOpen] = React.useState(false);
+    const [myData, setMyData] = React.useState<IUser2>();
+    useEffect(() => {
+        const getData = async() => {
+            const getMyData = await fetch("/api/reqs/me", {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+            const res = await getMyData.json();
+            setMyData(res.data);
+        }
+        getData();
+    }, [])
+
 
     const handleLogout = async (event: React.MouseEvent<HTMLButtonElement>) => {
         event.stopPropagation();
@@ -33,7 +47,7 @@ const HeaderProfile = () => {
                 className="flex relative group items-center p-0.5 text-sm pe-1 font-semibold rounded-lg hover:text-blue-600 dark:hover:text-blue-500 md:me-0 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:text-white"
                 type="button">
                 <FaUser className="text-3xl p-1 bg-gray-200 text-gray-700 me-2 rounded-lg"/>
-                Bonnie Green
+                {myData ? myData?.email : "Loading..."}
                 <div className={"mt-0.5 mx-1.5"}>
                     <IoIosArrowDown/>
                 </div>
@@ -60,12 +74,12 @@ const HeaderProfile = () => {
                             Stories
                         </Link>
                     </li>
-                    <li>
-                        <Link href={"/myprofile/mybranches"}
-                              className="block w-full text-left px-4 py-2 hover:bg-caribCurrent hover:text-white dark:hover:bg-gray-600 dark:hover:text-white">My
-                            Branches
-                        </Link>
-                    </li>
+                    {/*<li>*/}
+                    {/*    <Link href={"/myprofile/mybranches"}*/}
+                    {/*          className="block w-full text-left px-4 py-2 hover:bg-caribCurrent hover:text-white dark:hover:bg-gray-600 dark:hover:text-white">My*/}
+                    {/*        Branches*/}
+                    {/*    </Link>*/}
+                    {/*</li>*/}
                     {/*<li>*/}
                     {/*    <Link href={"/myprofile/settings"}*/}
                     {/*        className="block w-full text-left px-4 py-2 hover:bg-caribCurrent hover:text-white dark:hover:bg-gray-600 dark:hover:text-white">*/}

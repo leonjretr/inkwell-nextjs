@@ -7,20 +7,21 @@ const InfoBanner = () => {
     return (
         <div
             className="flex gap-x-5 justify-between w-150 rounded-lg p-4 border-b border-gray-200 bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
-            <Image className="rounded-lg max-w-52" src={"/images/cover2.jpg"} alt="MainPageCover" width={300}
+            <Image className="rounded-lg w-[250px] h-[300px]" src={"/images/welcome2.jpg"} alt="MainPageCover"
+                   width={400}
                    height={600}/>
-            <div className={"flex flex-col"}>
+            <div className={"flex flex-col justify-between"}>
                 <div className="mb-4 md:mb-0 md:me-4">
                     <h2 className="mb-1 text-lg font-semibold text-gray-900 dark:text-white">Find out more</h2>
-                    <p className="flex items-center text-base font-normal text-gray-500 dark:text-gray-400">
-                        Thank you for visiting our website! To find out more about how to add your own story or
-                        edit someone else - click Learn more.
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Aliquam lorem odio, convallis id dictum vulputate, convallis quis ante.
-                        Quisque elementum massa eu nulla maximus, sed ultricies lacus facilisis.
-                        Maecenas ex nunc, viverra ac eros non, hendrerit congue dolor.
-                        Maecenas mattis nulla ac scelerisque finibus. Nunc eu scelerisque enim, ut pulvinar ex.
-                        Ut sollicitudin eleifend lacus id tristique. Suspendisse mattis at dui et ullamcorper. </p>
+                    <div className="flex flex-col items-center text-base font-normal text-gray-500 dark:text-gray-400">
+                        <p>Welcome to our storytelling community!
+                            Thank you for visiting our platform — a place where imagination thrives and stories come to
+                            life. Whether you&apos;re here to share your own tales or explore and expand the ideas of others,
+                            you&apos;re in the right place. </p>
+
+                        <p>Want to learn how to publish your story?
+                            Just click Learn More and start your journey!</p>
+                    </div>
                 </div>
                 <div className="flex justify-between mt-3 items-center flex-shrink-0">
                     <Link href="/"
